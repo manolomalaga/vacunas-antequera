@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vacunas Antequera · Calendario y guía de vacunación en Andalucía 2026</title>
+<meta name="description" content="Guía de estudio de vacunación en Andalucía 2026 basada en Andavac y el SAS: calendario, adultos, embarazo, campaña de gripe y COVID, VRS, zóster y más.">
+<style>
+:root{--g:#00693c;--gd:#004d2c;--gl:#e6f3ec;--w:#fff;--ink:#1c2a24;--mu:#5b6b63;--bd:#d7e2dc;--or:#c2410c;--bg:#f6f9f7}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--g)}
+header.top{background:linear-gradient(135deg,var(--gd),var(--g));color:#fff;padding:28px 20px 22px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header.top h1{margin:0 0 6px;font-size:clamp(1.6rem,4vw,2.4rem)}
+header.top p{margin:0;opacity:.92;max-width:700px}
+.badge{display:inline-block;background:rgba(255,255,255,.18);border-radius:99px;padding:3px 12px;font-size:.82rem;margin-bottom:10px}
+nav.menu{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--bd);overflow-x:auto;white-space:nowrap}
+nav.menu a{display:inline-block;padding:12px 14px;text-decoration:none;color:var(--ink);font-size:.93rem;font-weight:600}
+nav.menu a:hover{color:var(--g);background:var(--gl)}
+section{padding:30px 0 6px}
+h2{color:var(--gd);margin:0 0 6px;font-size:1.55rem}
+h3{margin:18px 0 6px;color:var(--gd)}
+.lead{color:var(--mu);margin:0 0 16px}
+.card{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:18px;margin:12px 0}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.tool input{font-size:1.2rem;padding:10px 12px;border:2px solid var(--bd);border-radius:10px;width:160px}
+.tool button{font-size:1rem;padding:11px 18px;border:0;border-radius:10px;background:var(--g);color:#fff;font-weight:600;cursor:pointer;margin-left:6px}
+#res .item{border-left:5px solid var(--g);background:var(--gl);padding:10px 14px;border-radius:8px;margin:8px 0}
+#res .item.alt{border-color:var(--or);background:#fff3ec}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;font-size:.94rem}
+th,td{padding:9px 11px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top}
+th{background:var(--gd);color:#fff}
+tr:nth-child(even) td{background:#fafcfb}
+.tw{overflow-x:auto;border-radius:12px;border:1px solid var(--bd)}
+details{background:#fff;border:1px solid var(--bd);border-radius:12px;margin:8px 0;padding:0}
+summary{cursor:pointer;padding:13px 16px;font-weight:700;color:var(--gd)}
+details .in{padding:0 16px 14px}
+ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
+.pill{display:inline-block;background:var(--gl);color:var(--gd);border-radius:99px;padding:2px 10px;font-size:.8rem;font-weight:700;margin-right:4px}
+.warn{background:#fff8e6;border:1px solid #f1d68a;border-radius:12px;padding:12px 16px;margin:14px 0;font-size:.93rem}
+.src a{display:block;margin:4px 0}
+#q{width:100%;padding:12px 14px;font-size:1rem;border:2px solid var(--bd);border-radius:10px;margin:8px 0 4px}
+footer{margin-top:40px;background:var(--gd);color:#d9eadf;padding:24px 0;font-size:.88rem}
+footer a{color:#fff}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<span class="badge">Material de estudio · no oficial · Actualizado a noviembre de 2026</span>
+<h1>Vacunas Antequera</h1>
+<p>Calendario y guía de vacunación en Andalucía, resumidos desde Andavac y las instrucciones del Servicio Andaluz de Salud para repasar y consultar rápido.</p>
+</div></header>
+<nav class="menu"><div class="wrap">
+<a href="#herramienta">¿Qué me toca?</a><a href="#calendario">Calendario 2026</a><a href="#adulto">Adulto</a><a href="#embarazo">Embarazo</a><a href="#estacional">Gripe y COVID 26-27</a><a href="#vrs">VRS</a><a href="#riesgo">Grupos de riesgo</a><a href="#buscar">Buscar</a><a href="#fuentes">Fuentes</a>
+</div></nav>
+
+<main class="wrap">
+
+<div class="warn"><strong>Importante.</strong> Esta web resume documentos oficiales para estudio. No sustituye a las instrucciones del SAS ni al criterio clínico. Ante una duda, abre la fuente oficial (enlaces al final de cada bloque y en Fuentes). Los datos de pauta vienen de la Instrucción DGSPyOF-1/2026 (enero 2026) y de las instrucciones SGSPPS-1, 3 y 4/2026.</div>
+
+<section id="herramienta">
+<h2>¿Qué vacunas corresponden en 2026?</h2>
+<p class="lead">Escribe el año de nacimiento. Calcula las cohortes que cita el calendario de Andalucía 2026. Es orientativo: no tiene en cuenta factores de riesgo ni vacunas previas.</p>
+<div class="card tool">
+<label for="by"><strong>Año de nacimiento</strong></label><br>
+<input id="by" type="number" min="1900" max="2026" inputmode="numeric" placeholder="1961">
+<button onclick="calc()">Ver</button>
+<div id="res" aria-live="polite"></div>
+</div>
+</section>
+
+<section id="calendario">
+<h2>Calendario sistemático 2026 (infancia y adolescencia)</h2>
+<p class="lead">Fuente: <a href="https://www.andavac.es/calendario-vacunaciones/" target="_blank" rel="noopener">Andavac, Calendario Vacunaciones Andalucía 2026</a>. Instrucción DGSPyOF-1/2026, firmada el 26/01/2026.</p>
+<div class="tw"><table>
+<tr><th>Edad</th><th>Vacuna</th><th>Notas</th></tr>
+<tr><td>Prenatal</td><td>Tdpa (Boostrix), gripe, COVID-19</td><td>Tdpa desde la semana 27, preferible 27 o 28, en cada embarazo.</td></tr>
+<tr><td>Recién nacido (temporada VRS)</td><td>Nirsevimab (Beyfortus)</td><td>Dosis única. Ver apartado VRS.</td></tr>
+<tr><td>2 meses</td><td>Hexavalente, VNC20, MenB, rotavirus (oral)</td><td>Rotarix: 2 dosis, a los 2 y 4 meses.</td></tr>
+<tr><td>4 meses</td><td>Hexavalente, VNC20, MenB, MenACWY (Nimenrix), rotavirus</td><td>Pauta 2+1.</td></tr>
+<tr><td>11 meses</td><td>Hexavalente (refuerzo)</td><td></td></tr>
+<tr><td>12 meses</td><td>MenACWY (MenQuadfi), triple vírica</td><td></td></tr>
+<tr><td>15 meses</td><td>MenB, varicela</td><td></td></tr>
+<tr><td>2 y 3 años</td><td>2ª dosis triple vírica y varicela</td><td>Novedad 2026: se adelanta de 3 a 2 años. En 2026 se vacunan los nacidos en 2024 y 2023.</td></tr>
+<tr><td>6 años</td><td>DTPa-VPI (Tetraxim)</td><td>Nacidos en 2020.</td></tr>
+<tr><td>12 años</td><td>VPH (Gardasil 9, 1 dosis), MenACWY</td><td>Nacidos en 2014. Se revisa triple vírica y varicela.</td></tr>
+<tr><td>14 años</td><td>Tdpa</td><td>Nacidos en 2012 que no recibieron Tdpa desde los 10 años.</td></tr>
+<tr><td>13 a 21 años</td><td>VPH (rescate, 1 dosis)</td><td>Novedad 2026: rescate ampliado hasta los 21 años, ambos sexos.</td></tr>
+<tr><td>13 a 18 años</td><td>MenACWY (rescate)</td><td>Si no recibieron ninguna dosis desde los 10 años.</td></tr>
+</table></div>
+<details><summary>Novedades 2026 respecto a 2025</summary><div class="in"><ul>
+<li>Triple vírica y varicela: la 2ª dosis pasa de los 3 a los 2 años.</li>
+<li>VPH: rescate hasta los 21 años en chicas y chicos, con una sola dosis.</li>
+<li>Neumococo conjugada en adultos: se amplía de 60-76 a 60-80 años (nacidos 1946 a 1966) con VNC20.</li>
+<li>Rotavirus: Rotarix oral desde febrero de 2026, con rescate de nacidos desde el 1 de octubre de 2025 (menos de 20 semanas para la 1ª dosis).</li>
+<li>Triple vírica: se refuerza el rescate a cualquier edad hasta los 65 años y la revisión a los 12 y 14 años.</li>
+</ul></div></details>
+<p><a href="https://www.andavac.es/documentos/calendario-de-vacunaciones-de-andalucia-2026-instruccion-dsgpyof-1-2026/" target="_blank" rel="noopener">Instrucción DGSPyOF-1/2026 en Andavac</a> · <a href="https://www.andavac.es/calendario-vacunaciones/" target="_blank" rel="noopener">Tabla interactiva y guía visual</a></p>
+</section>
+
+<section id="adulto">
+<h2>Vacunación sistemática del adulto</h2>
+<p class="lead">Lo que se ofrece a la población general según edad, sin necesidad de patología.</p>
+<div class="grid">
+<div class="card"><span class="pill">≥ 60 años</span><h3>Gripe anual</h3><p>Durante la campaña, con o sin patología. Efluelda (alta carga) de forma sistemática desde los 75 años en la campaña 2026-27.</p></div>
+<div class="card"><span class="pill">≥ 70 años</span><h3>COVID-19 anual</h3><p>Una dosis anual. Esperar 3 meses tras infección reciente.</p></div>
+<div class="card"><span class="pill">60 a 80 años</span><h3>Neumococo (VNC20)</h3><p>Una dosis de Prevenar 20 a nacidos entre 1946 y 1966 que no hayan recibido VNC13, VNC15 ni VNC20. La polisacárida 23-valente está retirada del programa desde 2024. Intervalo mínimo: 6 meses tras VNC13 y 12 meses tras VPN23.</p></div>
+<div class="card"><span class="pill">65 años</span><h3>Herpes zóster (Shingrix)</h3><p>2 dosis separadas al menos 2 meses. Cohorte de 1961, con rescate de nacidos en 1959 y 1960 que no hayan empezado o completado la pauta.</p></div>
+<div class="card"><span class="pill">≥ 65 años</span><h3>Td</h3><p>Verificar estado vacunal. Se completa hasta 5 dosis. Una dosis hacia los 65 a quien tuvo 5 dosis en infancia y adolescencia.</p></div>
+<div class="card"><span class="pill">&lt; 65 años</span><h3>Triple vírica y varicela (rescate)</h3><p>Triple vírica: 2 dosis (intervalo mínimo de 4 semanas) si no hay 2 dosis documentadas, preferentemente nacidos desde 1978. Varicela: si no hay antecedente ni 2 dosis, serología y 2 dosis con 4 a 8 semanas de intervalo. Contraindicadas en embarazo e inmunodepresión.</p></div>
+</div>
+<p><a href="https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/profesionales/cartera-de-servicios/atencion-primaria/i-area-de-atencion-la-persona/2-atencion-especifica/25-prevencion-y-promocion-de-la-salud/252-vacunacion-sistematica-del-adulto" target="_blank" rel="noopener">Cartera de servicios SAS: 2.5.2 Vacunación sistemática del adulto</a></p>
+</section>
+
+<section id="embarazo">
+<h2>Embarazo y puerperio</h2>
+<div class="card"><ul>
+<li><strong>Tdpa (tosferina):</strong> una dosis en cada embarazo desde la semana 27, preferible en la 27 o 28.</li>
+<li><strong>Gripe:</strong> una dosis en cualquier trimestre, o en los primeros 6 meses del puerperio, durante la campaña.</li>
+<li><strong>COVID-19:</strong> una dosis en cualquier trimestre (preferible el 2º) o en los primeros 6 meses del puerperio.</li>
+<li><strong>Contraindicadas:</strong> triple vírica y varicela. Evitar embarazo 4 semanas tras cualquier dosis.</li>
+</ul></div>
+</section>
+
+<section id="estacional">
+<h2>Campaña estacional 2026-27: gripe y COVID-19</h2>
+<p class="lead">Instrucción SGSPPS-3/2026, 24 de septiembre de 2026. Inicio de la campaña: 1 de octubre de 2026.</p>
+<div class="tw"><table>
+<tr><th>Desde</th><th>Grupos</th></tr>
+<tr><td>1 octubre</td><td>Niños de 6 a 59 meses; docentes de menores de 5 años; 5 a 17 años con riesgo; residencias y centros de discapacidad (residentes y trabajadores); personal sanitario y sociosanitario; embarazadas y puerperio; 80 años o más.</td></tr>
+<tr><td>7 octubre</td><td>Grandes dependientes en domicilio y cuidadores; 70 años o más.</td></tr>
+<tr><td>14 octubre</td><td>18 a 59 años con patologías o situaciones de riesgo.</td></tr>
+<tr><td>21 octubre</td><td>60 años o más; otros grupos (penitenciarias, exposición a animales).</td></tr>
+</table></div>
+<div class="grid">
+<div class="card"><h3>Novedades</h3><ul><li>Efluelda (alta carga) desde los 75 años.</li><li>Fluad (adyuvada) para los grupos de riesgo de la instrucción.</li><li>Vacunas de gripe trivalentes, con las tres cepas cambiadas.</li><li>Sin vacuna COVID de 3 microgramos: 10 microgramos en niños de 6 meses a 11 años de muy alto riesgo.</li></ul></div>
+<div class="card"><h3>Cita</h3><ul><li>ClicSalud+, App Salud Andalucía, Salud Responde (955 545 060) o centro de salud.</li><li>Niños de 3 y 4 años: Fluenz intranasal, preferentemente en el colegio.</li><li>Jornadas sin cita los miércoles desde el 11 de noviembre de 2026, según disponibilidad.</li></ul></div>
+</div>
+<p><a href="https://www.andavac.es/documentos/vacunacion-estacional-en-andalucia-campana-2026-2027-instruccion-sgspps-3-2026/" target="_blank" rel="noopener">Instrucción SGSPPS-3/2026 en Andavac</a></p>
+</section>
+
+<section id="vrs">
+<h2>Virus respiratorio sincitial (VRS)</h2>
+<div class="grid">
+<div class="card"><h3>Lactantes: nirsevimab 2026-27</h3><p>Instrucción SGSPPS-1/2026. Una dosis a los nacidos entre el 1 de abril de 2026 y el 31 de marzo de 2027.</p><ul>
+<li><strong>Grupo 1A</strong> (1 abril a 30 septiembre 2026): en su centro de Atención Primaria desde el 21 de septiembre.</li>
+<li><strong>Grupo 1B</strong> (1 octubre 2026 a 31 marzo 2027): lo antes posible tras nacer, en la maternidad. Si nacen en centro privado, acto único sin cita en su centro de salud.</li>
+<li>Los nacidos a finales de marzo de 2027 pueden inmunizarse hasta el 9 de abril de 2027.</li></ul></div>
+<div class="card"><h3>Adultos de riesgo (nuevo 2026-27)</h3><p>Instrucción SGSPPS-4/2026, 9 de octubre de 2026. Vacuna mRESVIA (Moderna).</p><ul>
+<li><strong>Grupo 1:</strong> 60 años o más en residencias de mayores.</li>
+<li><strong>Grupo 2:</strong> 18 años o más con muy alto riesgo (cáncer hematológico, trasplantes, diálisis, errores innatos de inmunidad, VIH avanzado, entre otros).</li>
+<li><strong>Grupo 3:</strong> 60 años o más con tratamientos inmunosupresores definidos.</li></ul></div>
+</div>
+<p><a href="https://www.andavac.es/profesionales/documentos/" target="_blank" rel="noopener">Documentos para profesionales en Andavac</a></p>
+</section>
+
+<section id="riesgo">
+<h2>Grupos de riesgo</h2>
+<p class="lead">La instrucción DGSPyOF-1/2026 dedica un bloque a cada vacuna en personas de riesgo. Resumen de contenidos y dónde mirar.</p>
+<details><summary>Neumococo en personas de riesgo de enfermedad invasiva</summary><div class="in">VNC20 en personas con factores de riesgo definidos, aunque ya hubieran recibido otra vacuna neumocócica conjugada. Consulta el capítulo 1 de la instrucción (pág. 21).</div></details>
+<details><summary>Herpes zóster en personas de riesgo</summary><div class="in">Desde los 18 años en grupos de riesgo definidos, 2 dosis separadas al menos 2 meses. Capítulo 2 (pág. 25). Documento específico: <a href="https://www.andavac.es/herpes-zoster/" target="_blank" rel="noopener">Andavac, Herpes zóster</a>.</div></details>
+<details><summary>Meningococo B y ACWY</summary><div class="in">Pautas para riesgo de enfermedad meningocócica invasiva. Nimenrix desde 6 semanas, MenQuadfi desde 12 meses. Capítulo 3 (pág. 30). <a href="https://www.andavac.es/vacunacion-en-grupos-de-riesgo/meningococo-b-y-acwy/" target="_blank" rel="noopener">Andavac, Meningococo B y ACWY</a>.</div></details>
+<details><summary>Papilomavirus, hepatitis A y B, mpox</summary><div class="in">Capítulos 4 (VPH), 5 (hepatitis A y B) y 6 (mpox) de la instrucción. Las vacunas de COVID-19, mpox y nirsevimab se administran siempre en centros públicos, también a mutualistas.</div></details>
+<details><summary>Mutualistas (MUFACE, MUGEJU, ISFAS)</summary><div class="in">Siguen el procedimiento de su mutualidad, salvo excepciones: municipios del convenio rural, gripe en residencias y en colegios (3 y 4 años), nirsevimab y COVID-19 en centros públicos.</div></details>
+<p>Reacciones adversas: notificar siempre en <a href="https://www.notificaram.es/Pages/CCAA.aspx" target="_blank" rel="noopener">NotificaRAM</a>.</p>
+</section>
+
+<section id="buscar">
+<h2>Buscar en esta guía</h2>
+<input id="q" type="search" placeholder="Escribe una vacuna o un tema (zóster, neumococo, 65 años...)" aria-label="Buscar">
+<div id="qres" class="lead"></div>
+</section>
+
+<section id="fuentes" class="src">
+<h2>Fuentes</h2>
+<p class="lead">Andavac es la base. Orden: Andalucía primero, después Ministerio y sociedades científicas. Todas son de 2025 o 2026.</p>
+<h3>Andalucía</h3>
+<a href="https://www.andavac.es/" target="_blank" rel="noopener">Andavac, Plan de Vacunaciones de Andalucía</a>
+<a href="https://www.andavac.es/calendario-vacunaciones/" target="_blank" rel="noopener">Calendario de vacunaciones de Andalucía 2026</a>
+<a href="https://www.andavac.es/wp-content/uploads/instrucciones/Instruccion_Calendario_Vacunacion_Andalucia.pdf" target="_blank" rel="noopener">PDF Instrucción DGSPyOF-1/2026</a>
+<a href="https://www.andavac.es/wp-content/uploads/calendario/Guia-Visual-Vacunas-Calendario-Vacunaciones-Andalucia.pdf" target="_blank" rel="noopener">PDF Guía visual de las vacunas del calendario 2026</a>
+<a href="https://www.andavac.es/wp-content/uploads/instrucciones/Instruccion_Vacunacion_Estacional_Andalucia.pdf" target="_blank" rel="noopener">PDF Vacunación estacional 2026-27 (SGSPPS-3/2026)</a>
+<a href="https://www.andavac.es/wp-content/uploads/instrucciones/Instruccion_Prevencion_VRS_Nirsevimab_Andalucia_cambios_resaltados.pdf" target="_blank" rel="noopener">PDF Nirsevimab 2026-27 (SGSPPS-1/2026)</a>
+<a href="https://www.andavac.es/wp-content/uploads/instrucciones/Instruccion_VRS_adultos_Andalucia.pdf" target="_blank" rel="noopener">PDF VRS en adultos (SGSPPS-4/2026)</a>
+<a href="https://www.andavac.es/wp-content/uploads/instrucciones/Vacunacion_herpes_zoster_Andalucia.pdf" target="_blank" rel="noopener">PDF Herpes zóster 2026</a>
+<a href="https://www.andavac.es/wp-content/uploads/instrucciones/Vacunacion_meningococo_B_ACWY_Andalucia_2026.pdf" target="_blank" rel="noopener">PDF Meningococo B y ACWY 2026</a>
+<a href="https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/ciudadania/vacunas" target="_blank" rel="noopener">SAS, Vacunas (ciudadanía)</a>
+<a href="https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/archivo-comunicado/novedades-relevantes-del-calendario-de-vacunaciones-de-andalucia-2026" target="_blank" rel="noopener">SAS, Novedades del calendario 2026</a>
+<h3>Ministerio de Sanidad y CISNS</h3>
+<a href="https://www.sanidad.gob.es/areas/promocionPrevencion/vacunaciones/home.htm" target="_blank" rel="noopener">Ministerio de Sanidad, Vacunaciones</a>
+<a href="https://www.sanidad.gob.es/areas/promocionPrevencion/vacunaciones/calendario/docs/CalendarioVacunacion_Todalavida.pdf" target="_blank" rel="noopener">Calendario común toda la vida 2026</a>
+<a href="https://www.sanidad.gob.es/areas/promocionPrevencion/vacunaciones/VRS/poblacionAdulta/docs/VRS_adulto_Actualizacion.pdf" target="_blank" rel="noopener">Actualización VRS adulto (dic. 2025)</a>
+<h3>Sociedades científicas</h3>
+<a href="https://vacunasaep.org/" target="_blank" rel="noopener">Comité Asesor de Vacunas de la AEP</a>
+<a href="https://vacunasaep.org/profesionales/calendario-de-vacunaciones-e-inmunizaciones-aep-2026" target="_blank" rel="noopener">Calendario AEP 2026</a>
+<a href="https://www.enfermeriayvacunas.es/" target="_blank" rel="noopener">ANENVAC, Asociación Nacional de Enfermería y Vacunas</a>
+<a href="https://vacunas.org/" target="_blank" rel="noopener">Asociación Española de Vacunología</a>
+</section>
+</main>
+
+<footer><div class="wrap">Vacunas Antequera · material de estudio no oficial, elaborado a partir de documentos públicos de Andavac y el SAS. Sin datos de pacientes. Comprueba siempre la instrucción vigente en <a href="https://www.andavac.es/">andavac.es</a>.</div></footer>
+
+<script>
+function calc(){
+var y=parseInt(document.getElementById('by').value,10),o=[],R=document.getElementById('res');
+if(!y||y<1900||y>2026){R.innerHTML='<p>Escribe un año entre 1900 y 2026.</p>';return}
+var a=2026-y;
+function add(t,x,alt){o.push('<div class="item'+(alt?' alt':'')+'"><strong>'+t+'</strong><br>'+x+'</div>')}
+add('Edad aproximada en 2026','Cumple '+a+' años en 2026.');
+if(y>=2026)add('Lactante','Calendario infantil desde los 2 meses. Nirsevimab si nace entre abril de 2026 y marzo de 2027 (ver VRS).');
+if(y==2024||y==2023)add('Triple vírica y varicela, 2ª dosis','Cohortes de 2023 y 2024 en 2026.');
+if(y==2020)add('DTPa-VPI (Tetraxim)','Dosis de los 6 años: nacidos en 2020.');
+if(y==2014)add('12 años: VPH, MenACWY','Cohorte de 2014. Revisar triple vírica y varicela.');
+if(y==2012)add('14 años: Tdpa','Cohorte de 2012 si no recibieron Tdpa desde los 10 años.');
+if(y>=2005&&y<=2013)add('Rescate adolescente','VPH 1 dosis (13 a 21 años) y MenACWY (13 a 18 años) si no recibieron ninguna.');
+if(y>=2008&&y<=2011)add('Tdpa','Rescate a los 15 a 18 años si no han recibido Td ni Tdpa desde los 10 años.');
+if(y<=2007&&y>=2005)add('VPH hasta los 21 años','Chicas y chicos hasta los 21 años: 1 dosis si no recibieron ninguna.');
+if(y<=1966&&y>=1946)add('Neumococo VNC20','Nacidos entre 1946 y 1966: 1 dosis si no recibieron VNC13, VNC15 ni VNC20.');
+if(y>=1959&&y<=1961)add('Herpes zóster (Shingrix)',(y==1961?'Cohorte de los 65 años: 2 dosis.':'Rescate de nacidos en 1959 y 1960 que no empezaron o completaron la pauta de 2 dosis.'));
+if(a>=60)add('Gripe anual','Desde los 60 años en la campaña. Efluelda desde los 75.',false);
+if(a>=70)add('COVID-19 anual','Desde los 70 años.');
+if(a>=64&&a<=66)add('Td','Una dosis hacia los 65 años si completó 5 dosis antes; si no, completar hasta 5.');
+if(a>=65&&a!=65)add('Td','Verificar estado vacunal y completar hasta 5 dosis.',true);
+if(y>=1978&&a<65&&y<2006)add('Triple vírica (rescate)','Si no tiene 2 dosis documentadas ni antecedente de sarampión: 2 dosis con 4 semanas de intervalo.',true);
+if(a<65&&y<2006)add('Varicela (rescate)','Si no hay antecedente, herpes zóster ni 2 dosis: serología y 2 dosis si es susceptible.',true);
+if(a>=60)add('VRS','Solo en residencias o con tratamientos inmunosupresores definidos (ver VRS).',true);
+R.innerHTML=o.join('')+'<p style="color:#5b6b63;font-size:.85rem">Orientativo. Revisa factores de riesgo y la instrucción vigente.</p>';
+}
+document.getElementById('by').addEventListener('keydown',function(e){if(e.key==='Enter')calc()});
+var secs=[].slice.call(document.querySelectorAll('main section'));
+document.getElementById('q').addEventListener('input',function(){
+var t=this.value.trim().toLowerCase(),out=document.getElementById('qres');
+if(t.length<3){out.textContent='';secs.forEach(function(s){s.classList.remove('hide')});return}
+var n=0;secs.forEach(function(s){var ok=s.textContent.toLowerCase().indexOf(t)>-1||s.id=='buscar';s.classList.toggle('hide',!ok);if(ok&&s.id!='buscar')n++});
+out.textContent=n+' bloque(s) con "'+this.value.trim()+'"';
+});
+</script>
+</body>
+</html>
