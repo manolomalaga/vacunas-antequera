@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vacunas Antequera · Calendario interactivo de vacunación en Andalucía 2026</title>
+<meta name="description" content="Herramienta de estudio para enfermería: introduce la edad y ve qué vacunas corresponden, qué falta por revisar, refuerzos y campaña de gripe y COVID en Andalucía 2026.">
+<meta name="theme-color" content="#0b5d4a">
+<style>
+:root{--g:#0b6b53;--gd:#06382d;--gl:#e4f5ee;--a:#f08a1d;--ink:#14231f;--mu:#586a64;--bg:#f3f7f5;--card:#fff;--bd:#d6e3de;--sh:0 8px 28px rgba(6,56,45,.10);--r:18px}
+body.dark{--ink:#e7f1ed;--mu:#9bb1aa;--bg:#0c1714;--card:#13221e;--bd:#25403a;--gl:#173a31;--sh:0 8px 28px rgba(0,0,0,.4)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.55 "Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--g)}body.dark a{color:#6fe0bb}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+/* HERO */
+header.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(120deg,#06382d,#0b6b53 55%,#12906f);padding:22px 0 54px}
+header.hero:before,header.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(40px);opacity:.35;animation:float 12s ease-in-out infinite}
+header.hero:before{width:340px;height:340px;background:#f08a1d;right:-80px;top:-100px}
+header.hero:after{width:300px;height:300px;background:#5fe0b8;left:-90px;bottom:-140px;animation-delay:-5s}
+@keyframes float{50%{transform:translate(30px,26px) scale(1.12)}}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:2}
+.logo{background:#fff;border-radius:12px;padding:6px 12px;display:inline-flex;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.logo img{height:44px;display:block}
+.tools{display:flex;gap:8px}
+.tools button{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:99px;padding:8px 14px;font-weight:600;cursor:pointer}
+.tools button:hover{background:rgba(255,255,255,.28)}
+.heroin{display:grid;grid-template-columns:1.4fr .8fr;gap:24px;align-items:center;position:relative;z-index:2;margin-top:26px}
+.tag{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);padding:4px 12px;border-radius:99px;font-size:.82rem}
+h1{font-size:clamp(2rem,5.2vw,3.4rem);line-height:1.05;margin:12px 0 10px;letter-spacing:-.02em}
+.hero p{max-width:620px;opacity:.95;font-size:1.08rem}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{display:inline-block;border:0;border-radius:12px;padding:12px 20px;font-weight:700;font-size:1rem;cursor:pointer;text-decoration:none}
+.btn.p{background:var(--a);color:#2a1700}.btn.s{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4)}
+.btn:hover{transform:translateY(-1px)}
+.heroimg{text-align:center}.heroimg img{width:min(260px,70%);border-radius:50%;box-shadow:0 0 0 8px rgba(255,255,255,.12),0 18px 40px rgba(0,0,0,.3)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px;position:relative;z-index:2}
+.stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:12px 14px}
+.stat b{display:block;font-size:1.5rem}.stat span{font-size:.85rem;opacity:.9}
+/* NAV */
+nav.menu{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+nav.menu .wrap{display:flex;gap:4px;overflow-x:auto;white-space:nowrap}
+nav.menu a{padding:13px 13px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;border-bottom:3px solid transparent}
+nav.menu a:hover,nav.menu a.on{color:var(--g);border-color:var(--g)}
+body.dark nav.menu a:hover,body.dark nav.menu a.on{color:#6fe0bb;border-color:#6fe0bb}
+section{padding:42px 0 6px}
+h2{font-size:1.75rem;margin:0 0 6px;color:var(--gd);letter-spacing:-.01em}body.dark h2{color:#7fe6c4}
+h3{margin:18px 0 6px}
+.lead{color:var(--mu);margin:0 0 18px;max-width:780px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.reveal{opacity:0;transform:translateY(18px);transition:.6s}.reveal.in{opacity:1;transform:none}
+.warn{background:#fff6e2;border:1px solid #f1d99a;color:#5c4308;border-radius:14px;padding:12px 16px}
+body.dark .warn{background:#3a2f12;border-color:#6b5420;color:#f3deb0}
+/* ASISTENTE */
+.assist{display:grid;grid-template-columns:360px 1fr;gap:18px;align-items:start}
+.form label{display:block;font-weight:700;font-size:.9rem;margin:12px 0 4px}
+.form input[type=date],.form input[type=number],.form select{width:100%;padding:11px 12px;border:2px solid var(--bd);border-radius:12px;font-size:1rem;background:var(--card);color:var(--ink)}
+.form input:focus,.form select:focus{outline:0;border-color:var(--g)}
+.chk{display:flex;gap:8px;align-items:flex-start;margin:7px 0;font-size:.93rem;font-weight:500}
+.chk input{margin-top:4px;width:18px;height:18px;accent-color:var(--g)}
+.quick{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.quick button{border:1px solid var(--bd);background:var(--gl);color:var(--ink);border-radius:99px;padding:5px 11px;cursor:pointer;font-size:.85rem}
+.quick button:hover{border-color:var(--g)}
+.out h3:first-child{margin-top:0}
+.pat{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.ring{--p:0;width:86px;height:86px;border-radius:50%;background:conic-gradient(var(--g) calc(var(--p)*1%),var(--bd) 0);display:grid;place-items:center;transition:.6s}
+.ring i{font-style:normal;width:66px;height:66px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-weight:800}
+.chip{display:inline-block;border-radius:99px;padding:2px 10px;font-size:.78rem;font-weight:700;margin-right:4px}
+.c-now{background:#ffe3c2;color:#6b3300}.c-next{background:#d9ecff;color:#0b3a66}.c-resc{background:#f3dcff;color:#4a1670}.c-camp{background:#d6f5e4;color:#0b4a2e}.c-ok{background:#e0e7e4;color:#33433e}
+.it{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--bd);border-radius:12px;margin:8px 0;background:var(--card);animation:pop .35s both}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}}
+.it input{margin-top:5px;width:18px;height:18px;accent-color:var(--g)}
+.it.done{opacity:.55}.it.done b{text-decoration:line-through}
+.it small{display:block;color:var(--mu)}
+.empty{color:var(--mu);padding:30px;text-align:center}
+/* EDADES */
+.ages{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.ages button{border:0;border-radius:14px;padding:14px 8px;font-weight:700;font-size:.95rem;cursor:pointer;color:#fff;transition:.2s;box-shadow:var(--sh)}
+.ages button:hover{transform:translateY(-3px) scale(1.03)}
+.ages button.on{outline:4px solid var(--a)}
+.a1{background:#0e6aa8}.a2{background:#d9342b}.a3{background:#9a8b0a}.a4{background:#a83f9c}.a0{background:#1c9d78}
+#agedetail{margin-top:14px;min-height:80px}
+/* TIMELINE */
+.tlw{overflow-x:auto;padding:12px 4px 16px}
+.tl{display:flex;gap:0;min-width:980px;position:relative}
+.tl:before{content:"";position:absolute;left:0;right:0;top:22px;height:4px;background:linear-gradient(90deg,#1c9d78,#0e6aa8,#d9342b,#9a8b0a);border-radius:4px}
+.tn{flex:1;text-align:center;position:relative;padding-top:0}
+.tn .dot{width:46px;height:46px;border-radius:50%;margin:0 auto;display:grid;place-items:center;color:#fff;font-weight:800;font-size:.7rem;border:4px solid var(--bg);cursor:pointer;transition:.2s}
+.tn:hover .dot{transform:scale(1.2)}
+.tn p{margin:6px 4px 0;font-size:.78rem;color:var(--mu)}
+.tn.now .dot{animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(240,138,29,.7)}100%{box-shadow:0 0 0 16px rgba(240,138,29,0)}}
+/* TABLAS */
+.tw{overflow-x:auto;border-radius:14px;border:1px solid var(--bd)}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:.93rem}
+th,td{padding:10px 12px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top}
+th{background:var(--gd);color:#fff;position:sticky;top:0}tr:nth-child(even) td{background:color-mix(in srgb,var(--gl) 40%,transparent)}
+details{background:var(--card);border:1px solid var(--bd);border-radius:14px;margin:9px 0}
+summary{cursor:pointer;padding:13px 16px;font-weight:700}details[open] summary{color:var(--g)}details>div{padding:0 16px 14px}
+.srch{display:flex;gap:8px}.srch input{flex:1;padding:12px 14px;border:2px solid var(--bd);border-radius:12px;font-size:1rem;background:var(--card);color:var(--ink)}
+mark{background:#ffe08a;padding:0 2px;border-radius:3px}
+/* QUIZ */
+.quiz .q{font-size:1.15rem;font-weight:700;margin:6px 0 12px}
+.opts{display:grid;gap:8px}
+.opts button{text-align:left;padding:12px 14px;border:2px solid var(--bd);background:var(--card);color:var(--ink);border-radius:12px;font-size:1rem;cursor:pointer}
+.opts button:hover{border-color:var(--g)}.opts .ok{background:#d6f5e4!important;border-color:#1c9d78;color:#073b25}.opts .ko{background:#ffd9d6!important;border-color:#d9342b;color:#5a0d08}
+.bar{height:8px;background:var(--bd);border-radius:8px;overflow:hidden;margin-bottom:10px}.bar i{display:block;height:100%;background:var(--a);transition:.4s}
+.srcs a{display:block;padding:8px 0;border-bottom:1px dashed var(--bd)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+footer{margin-top:50px;background:var(--gd);color:#cfe8df;padding:28px 0}footer a{color:#9ff0d3}
+.fl{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.fl .logo img{height:36px}
+.dz{display:flex;align-items:center;gap:14px}.dz img{height:90px;border-radius:12px}
+@media(max-width:860px){.heroin{grid-template-columns:1fr}.heroimg{display:none}.assist{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}}
+@media print{header.hero,nav.menu,.tools,.cta,footer .fl,.quiz,.srch{display:none}.reveal{opacity:1;transform:none}body{background:#fff;color:#000}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+ <div class="wrap">
+  <div class="brand">
+   <span class="logo"><img src="8-logo-snm.jpg" alt="SaludNorteMálaga, Área Sanitaria Norte de Málaga"></span>
+   <div class="tools"><button id="dk" type="button" aria-label="Modo oscuro">Modo oscuro</button><button type="button" onclick="window.print()">Imprimir</button></div>
+  </div>
+  <div class="heroin">
+   <div>
+    <span class="tag">Material de estudio para enfermería · no oficial · actualizado a noviembre de 2026</span>
+    <h1>Vacunas Antequera</h1>
+    <p>Escribe la edad o la fecha de nacimiento y ve qué vacunas corresponden en Andalucía, qué conviene revisar en el historial, los refuerzos y la campaña de gripe y COVID de este otoño.</p>
+    <div class="cta"><a class="btn p" href="#asistente">Calcular por edad</a><a class="btn s" href="#edades">Ver por grupos de edad</a><a class="btn s" href="#repaso">Repasar con preguntas</a></div>
+   </div>
+   <div class="heroimg"><img src="6-escudo.gif" alt="Escudo de vacunación animado"></div>
+  </div>
+  <div class="stats">
+   <div class="stat"><b id="s1">0</b><span>hitos del calendario infantil y adolescente 2026</span></div>
+   <div class="stat"><b>2026</b><span>calendario andaluz, Instrucción DGSPyOF-1/2026</span></div>
+   <div class="stat"><b id="s3">·</b><span>día de la campaña de gripe y COVID (desde el 1 de octubre)</span></div>
+   <div class="stat"><b>0</b><span>datos de pacientes guardados</span></div>
+  </div>
+ </div>
+</header>
+
+<nav class="menu"><div class="wrap">
+ <a href="#asistente">Asistente por edad</a><a href="#edades">Grupos de edad</a><a href="#linea">Línea de vida</a><a href="#campana">Gripe y COVID</a><a href="#vrs">VRS</a><a href="#rescate">Rescate de dosis</a><a href="#riesgo">Riesgo</a><a href="#novedades">Novedades 2026</a><a href="#antequera">Antequera</a><a href="#herramientas">Herramientas</a><a href="#repaso">Repaso</a><a href="#buscar">Buscar</a><a href="#fuentes">Fuentes</a>
+</div></nav>
+
+<main class="wrap">
+<div class="warn reveal" style="margin-top:22px"><b>Importante.</b> Resume documentos oficiales para estudio y apoyo. No sustituye a las instrucciones del SAS, a Diraya ni al criterio clínico. Solo cuentan las dosis documentadas por escrito en registros oficiales o carnés. Ante una duda, abre la fuente (enlaces en cada bloque). Esta página no guarda ni envía ningún dato: todo se calcula en tu navegador.</div>
+
+<section id="asistente" class="reveal">
+ <h2>Asistente por edad</h2>
+ <p class="lead">Calcula lo que corresponde según el calendario sistemático de Andalucía 2026. Marca lo que ya está documentado para ver lo que falta por revisar.</p>
+ <div class="assist">
+  <div class="card form">
+   <label for="dob">Fecha de nacimiento</label>
+   <input type="date" id="dob">
+   <div class="quick">Edad rápida:
+    <button type="button" data-m="0">Recién nacido</button><button type="button" data-m="2">2 m</button><button type="button" data-m="4">4 m</button><button type="button" data-m="12">12 m</button><button type="button" data-m="15">15 m</button><button type="button" data-y="2">2 a</button><button type="button" data-y="6">6 a</button><button type="button" data-y="12">12 a</button><button type="button" data-y="14">14 a</button><button type="button" data-y="30">30 a</button><button type="button" data-y="50">50 a</button><button type="button" data-y="65">65 a</button><button type="button" data-y="72">72 a</button><button type="button" data-y="82">82 a</button>
+   </div>
+   <label for="fecha">Evaluar en la fecha</label>
+   <input type="date" id="fecha">
+   <label>Situaciones</label>
+   <div class="chk"><input type="checkbox" id="emb"><span>Embarazada o puerperio (hasta 6 meses)</span></div>
+   <div id="weekbox" style="display:none"><label for="sem">Semanas de gestación (opcional)</label><input type="number" id="sem" min="1" max="42" placeholder="p. ej. 28"></div>
+   <div class="chk"><input type="checkbox" id="riesgo"><span>Condición o situación de riesgo (inmunodepresión, cardiopatía, enfermedad respiratoria, diabetes, etc.)</span></div>
+   <div class="chk"><input type="checkbox" id="resi"><span>Vive en residencia de mayores o centro de discapacidad</span></div>
+   <div class="chk"><input type="checkbox" id="sanit"><span>Personal sanitario o sociosanitario</span></div>
+   <div class="chk"><input type="checkbox" id="cuid"><span>Gran dependiente en domicilio o cuidador</span></div>
+   <button class="btn p" type="button" id="go" style="margin-top:12px;width:100%">Calcular</button>
+  </div>
+  <div class="card out" id="out"><div class="empty"><img src="7-jeringa.gif" alt="Jeringa animada" style="max-width:260px;border-radius:12px"><p>Escribe una fecha de nacimiento y pulsa Calcular.</p></div></div>
+ </div>
+</section>
+
+<section id="edades" class="reveal">
+ <h2>Grupos de edad</h2>
+ <p class="lead">Toca un grupo y verás las vacunas del calendario andaluz 2026 para esa edad.</p>
+ <div class="ages" id="ages"></div>
+ <div class="card" id="agedetail"><span style="color:var(--mu)">Elige una edad.</span></div>
+</section>
+
+<section id="linea" class="reveal">
+ <h2>Línea de vida</h2>
+ <p class="lead">Del nacimiento a los 65 años y más. El punto naranja marca el hito más cercano a la edad que hayas calculado.</p>
+ <div class="tlw"><div class="tl" id="tl"></div></div>
+ <div class="card" id="tldetail" style="margin-top:6px"><span style="color:var(--mu)">Toca un punto de la línea.</span></div>
+</section>
+
+<section id="campana" class="reveal">
+ <h2>Campaña 2026-27: gripe y COVID-19</h2>
+ <p class="lead">Instrucción SGSPPS-3/2026 (24 de septiembre de 2026). Inicio el 1 de octubre. El estado se calcula con la fecha de hoy.</p>
+ <div class="grid" id="camp"></div>
+ <div class="two" style="margin-top:14px">
+  <div class="card"><h3 style="margin-top:0">Novedades de la campaña</h3><ul><li>Efluelda (alta carga) de forma sistemática desde los 75 años.</li><li>Fluad (adyuvada) en los grupos de riesgo de la instrucción.</li><li>Vacunas de gripe trivalentes, con las tres cepas actualizadas.</li><li>Sin vacuna COVID de 3 microgramos: 10 microgramos en niños de 6 meses a 11 años de muy alto riesgo.</li></ul></div>
+  <div class="card"><h3 style="margin-top:0">Cómo se pide cita</h3><ul><li>ClicSalud+, App Salud Andalucía, Salud Responde (955 545 060) o centro de salud.</li><li>Niños de 3 y 4 años: Fluenz intranasal, preferentemente en el colegio.</li><li>Jornadas sin cita los miércoles desde el 11 de noviembre de 2026, según disponibilidad.</li></ul><p><a href="https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/ciudadania/vacunas/vacunacion-gripe-y-covid-19" target="_blank" rel="noopener">SAS: vacunación gripe y COVID-19</a></p></div>
+ </div>
+</section>
+
+<section id="vrs" class="reveal">
+ <h2>Virus respiratorio sincitial (VRS)</h2>
+ <div class="two">
+  <div class="card"><h3 style="margin-top:0">Lactantes: nirsevimab 2026-27</h3><p>Una dosis a los nacidos entre el 1 de abril de 2026 y el 31 de marzo de 2027 (SGSPPS-1/2026).</p><ul><li><b>Grupo 1A</b> (1 abril a 30 septiembre 2026): en su centro de Atención Primaria desde el 21 de septiembre.</li><li><b>Grupo 1B</b> (1 octubre 2026 a 31 marzo 2027): lo antes posible tras nacer, en la maternidad. Si nacen en centro privado, acto único sin cita en su centro de salud.</li><li>Los nacidos a finales de marzo de 2027 pueden inmunizarse hasta el 9 de abril de 2027.</li></ul><p>Documento: instrucción SGSPPS-1/2026 en <a target="_blank" rel="noopener" href="https://www.andavac.es/">Andavac</a>.</p></div>
+  <div class="card"><h3 style="margin-top:0">Adultos de riesgo (nuevo 2026-27)</h3><p>mRESVIA (Moderna). Instrucción SGSPPS-4/2026, 9 de octubre de 2026.</p><ul><li><b>Grupo 1:</b> 60 años o más en residencias de mayores.</li><li><b>Grupo 2:</b> 18 años o más con muy alto riesgo (cáncer hematológico, trasplantes, diálisis, errores innatos de inmunidad, VIH avanzado, entre otros).</li><li><b>Grupo 3:</b> 60 años o más con tratamientos inmunosupresores definidos.</li></ul></div>
+ </div>
+</section>
+
+<section id="rescate" class="reveal">
+ <h2>Rescate de dosis y calendarios acelerados</h2>
+ <p class="lead">Guía de calendarios acelerados de vacunación en personas con vacunaciones no actualizadas. Andalucía, febrero 2026 (actualización 17/02/2026).</p>
+ <div class="two">
+  <div class="card"><h3 style="margin-top:0">Reglas generales</h3><ul>
+   <li><b>Dosis puesta, dosis que cuenta.</b> No se reinicia una pauta si las dosis previas cumplieron la edad y el intervalo mínimos. Se completa aunque se pasara el intervalo recomendado.</li>
+   <li>Se calculan las dosis necesarias por edad y se restan las recibidas.</li>
+   <li>Solo valen las dosis documentadas por escrito en registros oficiales o carnés. La información verbal no se acepta. Si hay duda razonable, se inicia como no vacunado.</li>
+   <li>Se aprovecha cualquier contacto sanitario para revisar el estado vacunal. No hace falta exploración completa previa.</li>
+   <li>Se recomienda administrar a la vez todo lo posible, en sitios anatómicos distintos.</li></ul></div>
+  <div class="card"><h3 style="margin-top:0">Intervalos y validez</h3><ul>
+   <li><b>Vacunas atenuadas</b> no puestas el mismo día: separar al menos 28 días, sin periodo de gracia.</li>
+   <li><b>Inactivadas</b>, o atenuada con inactivada: sin intervalo mínimo entre ellas.</li>
+   <li><b>Periodo de gracia:</b> vale una dosis inactivada puesta hasta 4 días antes de la edad o el intervalo mínimo.</li>
+   <li><b>Invalidez:</b> una dosis puesta 5 o más días antes del mínimo no vale y se repite tras el intervalo mínimo desde esa dosis.</li>
+   <li>Alcanzado el estado adecuado, conviene seguir con los intervalos habituales.</li></ul></div>
+ </div>
+ <p><a class="btn p" target="_blank" rel="noopener" href="https://www.andavac.es/wp-content/uploads/calendario/Calendarios_acelerados_de_vacunaciones_Andalucia.pdf">Abrir la guía completa (PDF, 15 págs.)</a> Contiene las tablas de dosis mínimas e intervalos para menores de 7 años, de 7 a 18 y mayores de 18.</p>
+</section>
+
+<section id="riesgo" class="reveal">
+ <h2>Grupos de riesgo</h2>
+ <p class="lead">La instrucción DGSPyOF-1/2026 dedica un capítulo a cada vacuna en personas de riesgo. Dónde mirar:</p>
+ <details open><summary>Neumococo en riesgo de enfermedad invasiva</summary><div>VNC20 en personas con factores de riesgo definidos, aunque ya hubieran recibido otra vacuna neumocócica conjugada. Capítulo 1 (pág. 21). En población general: una dosis de Prevenar 20 a nacidos entre 1946 y 1966 sin VNC13, VNC15 ni VNC20 previas. La polisacárida 23-valente está retirada del programa desde 2024. Intervalo mínimo: 6 meses tras VNC13 y 12 meses tras VPN23.</div></details>
+ <details><summary>Herpes zóster en riesgo</summary><div>Desde los 18 años en grupos de riesgo definidos, 2 dosis separadas al menos 2 meses (Shingrix). Capítulo 2 (pág. 25). <a target="_blank" rel="noopener" href="https://www.andavac.es/">Documento específico en Andavac</a>. Vídeo de preparación y administración: <a target="_blank" rel="noopener" href="https://www.andavac.es/documentos/video-preparacion-y-administracion-de-la-vacuna-shingrix-frente-al-herpes-zoster/">Andavac, Shingrix (julio 2024)</a>.</div></details>
+ <details><summary>Meningococo B y ACWY</summary><div>Pautas para riesgo de enfermedad meningocócica invasiva. Nimenrix desde 6 semanas, MenQuadfi desde 12 meses. Capítulo 3 (pág. 30).</div></details>
+ <details><summary>VPH, hepatitis A y B, mpox</summary><div>Capítulos 4 (VPH), 5 (hepatitis A y B) y 6 (mpox). Las vacunas de COVID-19, mpox y nirsevimab se administran siempre en centros públicos, también a mutualistas.</div></details>
+ <details><summary>Mutualistas (MUFACE, MUGEJU, ISFAS)</summary><div>Siguen el procedimiento de su mutualidad, salvo excepciones: municipios del convenio rural, gripe en residencias y colegios (3 y 4 años), nirsevimab y COVID-19 en centros públicos.</div></details>
+ <p>Reacciones adversas: notificar siempre en <a target="_blank" rel="noopener" href="https://www.notificaram.es/">NotificaRAM</a>.</p>
+</section>
+
+<section id="novedades" class="reveal">
+ <h2>Novedades 2026 respecto a 2025</h2>
+ <div class="grid">
+  <div class="card"><b>Triple vírica y varicela</b><br>La 2ª dosis pasa de los 3 a los 2 años. En 2026 se vacunan los nacidos en 2024 y 2023.</div>
+  <div class="card"><b>VPH</b><br>Rescate hasta los 21 años en chicas y chicos, con una dosis.</div>
+  <div class="card"><b>Neumococo en adultos</b><br>Se amplía de 60-76 a 60-80 años (nacidos 1946 a 1966) con VNC20.</div>
+  <div class="card"><b>Rotavirus</b><br>Rotarix oral desde febrero de 2026. Rescate de nacidos desde el 1 de octubre de 2025 (menos de 20 semanas para la 1ª dosis).</div>
+  <div class="card"><b>Triple vírica</b><br>Refuerzo del rescate a cualquier edad hasta los 65 años y revisión a los 12 y 14 años.</div>
+  <div class="card"><b>Nirsevimab y VRS adulto</b><br>Nirsevimab para nacidos del 1/4/2026 al 31/3/2027. mRESVIA en adultos de riesgo (SGSPPS-4/2026).</div>
+ </div>
+ <p><a target="_blank" rel="noopener" href="https://www.andavac.es/faq-profesionales/cuales-son-las-principales-novedades-del-calendario-de-vacunaciones-de-andalucia-2026/">Andavac: principales novedades del calendario 2026</a> · <a target="_blank" rel="noopener" href="https://www.andavac.es/nuevo-calendario-de-vacunaciones-e-inmunizaciones-2026/">Nuevo calendario 2026</a></p>
+</section>
+
+<section id="antequera" class="reveal">
+ <h2>Antequera y Málaga</h2>
+ <p class="lead">Información local reciente. La prensa solo da contexto. Lo oficial es el SAS y el distrito.</p>
+ <div class="grid">
+  <div class="card"><b>SAS: sin cita los miércoles</b><br>541 puntos en Andalucía para la población diana de gripe (13/11/2026).<br><a target="_blank" rel="noopener" href="https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/todas-noticia/andalucia-vacunara-sin-cita-los-miercoles-la-poblacion-diana-frente-la-gripe-en-541-puntos">Noticia SAS</a></div>
+  <div class="card"><b>Comarca de Antequera</b><br>Cuatro municipios habilitan puntos sin cita (SER, 19/11/2026).<br><a target="_blank" rel="noopener" href="https://cadenaser.com/andalucia/2026/11/19/cuatro-municipios-de-la-comarca-de-antequera-habilitan-puntos-para-vacunarse-de-la-gripe-sin-cita-previa-ser-antequera/">Cadena SER</a></div>
+  <div class="card"><b>Supersábado en La Verónica</b><br>Vacunación en el centro comercial de Antequera (SER, 21/11/2026).<br><a target="_blank" rel="noopener" href="https://cadenaser.com/andalucia/2026/11/21/el-supersabado-de-vacunacion-tambien-llega-al-centro-comercial-la-veronica-de-antequera-ser-antequera/">Cadena SER</a></div>
+  <div class="card"><b>Área Sanitaria Norte de Málaga</b><br>Reconocimientos en el V Congreso Andavac (SAS, 5/5/2026).<br><a target="_blank" rel="noopener" href="https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/todas-noticia/el-area-sanitaria-norte-de-malaga-recibe-23-reconocimientos-en-el-v-congreso-de-andavac">Noticia SAS</a></div>
+  <div class="card"><b>Distrito Málaga-Valle del Guadalhorce</b><br>Vacunación en centros escolares (SAS, 27/4/2026).<br><a target="_blank" rel="noopener" href="https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/todas-noticia/el-distrito-sanitario-malaga-valle-del-guadalhorce-intensifica-la-vacunacion-en-centros-escolares">Noticia SAS</a></div>
+  <div class="card"><b>Colegio de Médicos de Málaga</b><br>Llamamiento gripe y COVID (3/11/2026).<br><a target="_blank" rel="noopener" href="https://commalaga.com/el-colegio-de-medicos-de-malaga-anima-a-vacunarse-frente-a-la-gripe-y-la-covid-para-proteger-a-las-personas-mas-vulnerables/">commalaga.com</a></div>
+ </div>
+</section>
+
+<section id="herramientas" class="reveal">
+ <h2>Herramientas y apps de referencia</h2>
+ <p class="lead">Otras aplicaciones útiles. Cada una indica su origen. Las no oficiales se marcan.</p>
+ <div class="grid">
+  <div class="card"><b>Vacunas Andalucía</b> <span class="chip c-ok">app del Colegio de Enfermería de Cádiz</span><br>Calendario por edades, calendarios acelerados, viajes, riesgo, neumococo, gripe y COVID.<br><a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?hl=es_419&id=com.coecadiz.vacunasandalucia">Google Play</a> · <a target="_blank" rel="noopener" href="https://consejoandaluzenfermeria.com/noticias/descarga-la-nueva-actualizacion-de-la-app-vacunas-andalucia/">Noticia (nov. 2025)</a></div>
+  <div class="card"><b>App interactiva de pacientes de riesgo</b> <span class="chip c-next">AEP · ene 2026</span><br>Adapta vacunación e inmunización a pacientes de riesgo.<br><a target="_blank" rel="noopener" href="https://vacunasaep.org/profesionales/noticias/aplicacion-interactiva-para-la-vacunacion-e-inmunizacion-de-pacientes-de">vacunasaep.org</a></div>
+  <div class="card"><b>Calendario vacunal por comunidad</b> <span class="chip c-next">SEMERGEN · feb 2025</span><br>Consulta de calendario por comunidad autónoma y grupos de riesgo.<br><a target="_blank" rel="noopener" href="https://semergen.es/?idN=2850&seccion=sociedad&subSeccion=detalleNoticia">Noticia SEMERGEN</a></div>
+  <div class="card"><b>Enfermera Sonia</b> <span class="chip c-resc">iniciativa personal, no oficial</span><br>Asistente web con IA que responde dudas con fuentes de Sanidad, OMS y CDC.<br><a target="_blank" rel="noopener" href="https://diariosanitario.com/vacunas-enfermera-sonia/">Diario Sanitario</a></div>
+  <div class="card"><b>Seminario Calendario 2025 (vídeo)</b> <span class="chip c-ok">Andavac · EASP</span><br>Presentación de las novedades del calendario andaluz.<br><a target="_blank" rel="noopener" href="https://www.andavac.es/profesionales/seminario-presentacion-calendario-vacunal-2025/">Andavac</a></div>
+  <div class="card"><b>Neumococo: app de decisión</b> <span class="chip c-next">Aragón · premio AEV 2025</span><br>Apoya decidir la pauta antineumocócica.<br><a target="_blank" rel="noopener" href="https://vacunas.org/aev-awards-queriamos-una-herramienta-toma-de-decisiones-mas-facil-y-rapida/">vacunas.org</a></div>
+ </div>
+</section>
+
+<section id="repaso" class="reveal">
+ <h2>Repaso con preguntas</h2>
+ <p class="lead">Diez preguntas al azar sobre el calendario 2026. Sirven para repasar, no puntúan en ningún sitio.</p>
+ <div class="card quiz" id="quiz"></div>
+</section>
+
+<section id="buscar" class="reveal">
+ <h2>Buscar en esta guía</h2>
+ <div class="srch"><input id="q" type="search" placeholder="Ej.: zóster, MenB, rotavirus, 2 años, embarazo"><button class="btn p" id="qb" type="button">Buscar</button></div>
+ <div id="qres" style="margin-top:12px"></div>
+</section>
+
+<section id="fuentes" class="reveal">
+ <h2>Fuentes</h2>
+ <p class="lead">Andavac es la base. Orden: Andalucía primero, luego Ministerio y sociedades científicas. Todas son de 2025 o 2026.</p>
+ <div class="two">
+  <div class="card srcs"><h3 style="margin-top:0">Andalucía</h3>
+   <a target="_blank" rel="noopener" href="https://www.andavac.es/">Andavac, Plan de Vacunaciones de Andalucía</a>
+   <a target="_blank" rel="noopener" href="https://www.andavac.es/nuevo-calendario-de-vacunaciones-e-inmunizaciones-2026/">Calendario de vacunaciones de Andalucía 2026</a>
+   <a target="_blank" rel="noopener" href="https://www.andavac.es/wp-content/uploads/calendario/Calendarios_acelerados_de_vacunaciones_Andalucia.pdf">Guía de calendarios acelerados (feb. 2026)</a>
+   <a target="_blank" rel="noopener" href="https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/ciudadania/vacunas">SAS, Vacunas (ciudadanía)</a>
+   <a target="_blank" rel="noopener" href="https://www.sspa.juntadeandalucia.es/servicioandaluzdesalud/ciudadania/vacunas/vacunacion-gripe-y-covid-19">SAS, Vacunación gripe y COVID-19</a>
+  </div>
+  <div class="card srcs"><h3 style="margin-top:0">Ministerio y sociedades</h3>
+   <a target="_blank" rel="noopener" href="https://www.sanidad.gob.es/areas/promocionPrevencion/vacunaciones/home.htm">Ministerio de Sanidad, Vacunaciones</a>
+   <a target="_blank" rel="noopener" href="https://vacunasaep.org/">Comité Asesor de Vacunas de la AEP</a>
+   <a target="_blank" rel="noopener" href="https://www.enfermeriayvacunas.es/">ANENVAC, Enfermería y Vacunas</a>
+   <a target="_blank" rel="noopener" href="https://vacunas.org/">Asociación Española de Vacunología</a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer><div class="wrap"><div class="fl"><span class="logo"><img src="8-logo-snm.jpg" alt="SaludNorteMálaga"></span><div>Vacunas Antequera · material de estudio no oficial, elaborado a partir de documentos públicos de Andavac y el SAS. Sin datos de pacientes. Comprueba siempre la instrucción vigente en <a href="https://www.andavac.es/" target="_blank" rel="noopener">andavac.es</a>.</div></div></div></footer>
+
+<script>
+(function(){
+"use strict";
+var $=function(s){return document.querySelector(s)};
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
+/* ---------- datos del calendario 2026 ---------- */
+var MIL=[
+ {m:0,l:"Nacimiento",g:"a0",v:[["Nirsevimab (Beyfortus)","Una dosis si nace entre el 1/4/2026 y el 31/3/2027. Ver apartado VRS."]]},
+ {m:2,l:"2 meses",g:"a1",v:[["Hexavalente","1ª dosis"],["Neumococo conjugada (VNC20)","1ª dosis"],["Meningococo B","1ª dosis"],["Rotavirus (Rotarix, oral)","1ª dosis. Solo nacidos desde el 1/10/2025."]]},
+ {m:4,l:"4 meses",g:"a1",v:[["Hexavalente","2ª dosis"],["Neumococo conjugada (VNC20)","2ª dosis"],["Meningococo B","2ª dosis"],["Meningococo ACWY (Nimenrix)","1 dosis"],["Rotavirus (Rotarix, oral)","2ª dosis. Solo nacidos desde el 1/10/2025."]]},
+ {m:11,l:"11 meses",g:"a1",v:[["Hexavalente","Refuerzo"],["Neumococo conjugada (VNC20)","Refuerzo (pauta 2+1)"]]},
+ {m:12,l:"12 meses",g:"a1",v:[["Meningococo ACWY (MenQuadfi)","1 dosis"],["Triple vírica","1ª dosis"]]},
+ {m:15,l:"15 meses",g:"a1",v:[["Meningococo B","Refuerzo"],["Varicela","1ª dosis"]]},
+ {m:24,l:"2 años",g:"a2",v:[["Triple vírica","2ª dosis. Novedad 2026: se adelanta de 3 a 2 años."],["Varicela","2ª dosis. Novedad 2026: se adelanta de 3 a 2 años."]]},
+ {m:72,l:"6 años",g:"a2",v:[["DTPa-VPI (Tetraxim)","Refuerzo. Nacidos en 2020."]]},
+ {m:144,l:"12 años",g:"a2",v:[["VPH (Gardasil 9)","1 dosis. Nacidos en 2014."],["Meningococo ACWY","1 dosis"],["Triple vírica y varicela","Revisar dosis y completar si faltan"]]},
+ {m:168,l:"14 años",g:"a2",v:[["Tdpa","Nacidos en 2012 que no recibieron Tdpa desde los 10 años."]]}
+];
+var NIRS_A=new Date(2026,3,1),NIRS_B=new Date(2027,2,31),ROTA=new Date(2025,9,1);
+var CAMP=[
+ {d:new Date(2026,9,1),t:"1 de octubre",g:"Niños de 6 a 59 meses; docentes de menores de 5 años; 5 a 17 años con riesgo; residencias y centros de discapacidad (residentes y trabajadores); personal sanitario y sociosanitario; embarazadas y puerperio; 80 años o más."},
+ {d:new Date(2026,9,7),t:"7 de octubre",g:"Grandes dependientes en domicilio y cuidadores; 70 años o más."},
+ {d:new Date(2026,9,14),t:"14 de octubre",g:"18 a 59 años con patologías o situaciones de riesgo."},
+ {d:new Date(2026,9,21),t:"21 de octubre",g:"60 años o más; otros grupos (penitenciarias, exposición a animales)."}
+];
+/* ---------- utilidades de fecha ---------- */
+function pad(n){return n<10?"0"+n:""+n}
+function iso(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
+function fromIso(s){var p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2])}
+function addM(d,m){var r=new Date(d.getFullYear(),d.getMonth()+m,d.getDate());if(r.getDate()!==d.getDate())r=new Date(d.getFullYear(),d.getMonth()+m+1,0);return r}
+function monthsBetween(a,b){var m=(b.getFullYear()-a.getFullYear())*12+(b.getMonth()-a.getMonth());if(b.getDate()<a.getDate())m--;return m}
+function fmt(d){return d.toLocaleDateString("es-ES",{day:"numeric",month:"long",year:"numeric"})}
+function ageTxt(m){if(m<24)return m+" meses";var y=Math.floor(m/12),r=m%12;return y+" años"+(r&&y<6?" y "+r+" meses":"")}
+function span(n){return n>=730?Math.round(n/365)+" años":n>=60?Math.round(n/30)+" meses":n+" días"}
+function rel(d,t){var days=Math.round((d-t)/864e5);if(days===0)return "hoy";return days>0?"en "+span(days):"hace "+span(-days)}
+/* ---------- asistente ---------- */
+var state={};
+function plan(dob,today,o){
+ var ageM=monthsBetween(dob,today),ageY=Math.floor(ageM/12),by=dob.getFullYear();
+ var past=[],next=null,resc=[],camp=[],adult=[];
+ MIL.forEach(function(ms){
+  var due=addM(dob,ms.m),items=ms.v.filter(function(v){
+   if(ms.m===0)return dob>=NIRS_A&&dob<=NIRS_B;
+   if(v[0].indexOf("Rotavirus")===0)return dob>=ROTA;
+   if(ms.m===168)return by===2012||ageY<=14;
+   return true});
+  if(!items.length)return;
+  if(ms.m===0&&ageM>6)return;
+  var okAge=(ageM<=36)||(ageY<=18&&ms.m>=72);
+  if(ageM>=ms.m){if(okAge)past.push({ms:ms,due:due,items:items})}
+  else if(!next){next={ms:ms,due:due,items:items}}
+ });
+ /* rescates por edad */
+ if(ageY>=13&&ageY<=21)resc.push(["VPH (rescate)","1 dosis en ambos sexos hasta los 21 años si no se vacunó (novedad 2026)."]);
+ if(ageY>=13&&ageY<=18)resc.push(["Meningococo ACWY (rescate)","Si no recibieron ninguna dosis desde los 10 años."]);
+ if(ageY>=2&&ageY<=64)resc.push(["Triple vírica (rescate)","2 dosis documentadas, intervalo mínimo 4 semanas. Preferentemente nacidos desde 1978. Contraindicada en embarazo e inmunodepresión."]);
+ if(ageY>=18&&ageY<=64)resc.push(["Varicela","Si no hay antecedente ni 2 dosis: serología y 2 dosis con 4 a 8 semanas de intervalo. Contraindicada en embarazo e inmunodepresión."]);
+ if(by>=2025&&dob>=ROTA&&ageM<6)resc.push(["Rotavirus (rescate)","Nacidos desde el 1/10/2025: la 1ª dosis debe ponerse con menos de 20 semanas."]);
+ if(ageM>=2&&ageY<7)resc.push(["Revisión de calendario acelerado","Si faltan dosis: guía de calendarios acelerados de Andalucía (feb. 2026), tablas de menores de 7 años."]);
+ /* adultos */
+ if(ageY>=65)adult.push(["Td","Verificar estado vacunal y completar hasta 5 dosis. Una dosis hacia los 65 años a quien tuvo 5 dosis en infancia y adolescencia."]);
+ if(by===1961)adult.push(["Herpes zóster (Shingrix)","Cohorte de 65 años: 2 dosis separadas al menos 2 meses."]);
+ if(by===1959||by===1960)adult.push(["Herpes zóster (rescate)","Nacidos en 1959 y 1960 que no hayan empezado o completado la pauta: 2 dosis, mínimo 2 meses."]);
+ if(by>=1946&&by<=1966)adult.push(["Neumococo (VNC20)","Una dosis de Prevenar 20 si no recibió VNC13, VNC15 ni VNC20. Intervalo mínimo: 6 meses tras VNC13, 12 meses tras VPN23."]);
+ if(ageY>=70)adult.push(["COVID-19 anual","Una dosis anual. Esperar 3 meses tras infección reciente."]);
+ if(ageY>=60)adult.push(["Gripe anual","Durante la campaña. Efluelda (alta carga) desde los 75 años."]);
+ if(ageY>=60&&o.resi)adult.push(["VRS (mRESVIA)","Grupo 1 de la instrucción SGSPPS-4/2026: 60 años o más en residencias."]);
+ if(ageY>=18&&o.riesgo){adult.push(["VRS adulto (riesgo)","Solo muy alto riesgo (grupo 2) o inmunosupresión definida (grupo 3, desde 60 años). Ver SGSPPS-4/2026."]);
+  adult.push(["Herpes zóster en riesgo","Desde los 18 años en grupos definidos, 2 dosis separadas al menos 2 meses. Capítulo 2, pág. 25."]);
+  adult.push(["Neumococo en riesgo","VNC20 en factores de riesgo definidos. Capítulo 1, pág. 21."])}
+ if(o.riesgo&&ageY<18)adult.push(["Pautas de riesgo","Consulta los capítulos de neumococo, meningococo B/ACWY y hepatitis de la instrucción DGSPyOF-1/2026."]);
+ if(o.emb){adult.push(["Tdpa","Una dosis en cada embarazo desde la semana 27, preferible en la 27 o 28."]);
+  adult.push(["Gripe","Una dosis en cualquier trimestre o en los primeros 6 meses del puerperio, durante la campaña."]);
+  adult.push(["COVID-19","Una dosis en cualquier trimestre (preferible el 2º) o en los primeros 6 meses del puerperio."]);
+  adult.push(["No poner","Triple vírica y varicela están contraindicadas. Evitar embarazo 4 semanas tras cualquier dosis."])}
+ /* campaña */
+ var c=[];
+ if(ageM>=6&&ageM<=59)c.push(0);
+ if(o.emb||ageY>=80)c.push(0);
+ if(ageY>=5&&ageY<=17&&o.riesgo)c.push(0);
+ if(o.resi||o.sanit)c.push(0);
+ if(ageY>=70||o.cuid)c.push(1);
+ if(ageY>=18&&ageY<=59&&o.riesgo)c.push(2);
+ if(ageY>=60)c.push(3);
+ var seen={};c.forEach(function(i){if(!seen[i]){seen[i]=1;camp.push(i)}});
+ return {ageM:ageM,ageY:ageY,by:by,past:past,next:next,resc:resc,adult:adult,camp:camp};
+}
+function itemHtml(key,name,note,cls,chip){
+ return '<label class="it" data-k="'+esc(key)+'"><input type="checkbox" data-k="'+esc(key)+'"'+(state[key]?" checked":"")+'><div><span class="chip '+cls+'">'+chip+'</span><b>'+esc(name)+'</b><small>'+esc(note)+'</small></div></label>';
+}
+function render(){
+ var v=$("#dob").value;if(!v){$("#out").innerHTML='<div class="empty"><img src="7-jeringa.gif" alt="" style="max-width:260px;border-radius:12px"><p>Escribe una fecha de nacimiento y pulsa Calcular.</p></div>';return}
+ var dob=fromIso(v),today=$("#fecha").value?fromIso($("#fecha").value):new Date();today=new Date(today.getFullYear(),today.getMonth(),today.getDate());
+ if(dob>today){$("#out").innerHTML='<div class="empty">La fecha de nacimiento es posterior a la fecha de evaluación.</div>';return}
+ var o={emb:$("#emb").checked,riesgo:$("#riesgo").checked,resi:$("#resi").checked,sanit:$("#sanit").checked,cuid:$("#cuid").checked};
+ var p=plan(dob,today,o),h="",tot=0,ok=0;
+ p.past.forEach(function(x){x.items.forEach(function(it){tot++;if(state[x.ms.l+"|"+it[0]])ok++})});
+ var pct=tot?Math.round(ok*100/tot):0;
+ h+='<div class="pat"><div class="ring" style="--p:'+pct+'"><i>'+pct+'%</i></div><div><h3 style="margin:0">Edad: '+ageTxt(p.ageM)+'</h3><div style="color:var(--mu)">Nacido en '+p.by+'. Evaluado el '+fmt(today)+'.'+(tot?' Documentadas: '+ok+' de '+tot+' dosis esperadas por edad.':'')+'</div></div></div>';
+ if(p.next){var d=p.next.due;h+='<h3>Próximo hito</h3><div class="it"><div><span class="chip c-next">'+rel(d,today)+'</span><b>'+esc(p.next.ms.l)+'</b> · '+fmt(d)+'<small>'+p.next.items.map(function(i){return esc(i[0])+" ("+esc(i[1])+")"}).join(" · ")+'</small></div></div>'}
+ if(p.camp.length){h+='<h3>Campaña de gripe y COVID-19 2026-27</h3>';p.camp.forEach(function(i){var c=CAMP[i];h+='<div class="it"><div><span class="chip c-camp">'+(c.d<=today?"abierta desde el "+c.t:"empieza el "+c.t)+'</span><b>Gripe y COVID-19</b><small>Grupo: '+esc(c.g)+'</small></div></div>'});
+  if(p.ageM>=36&&p.ageM<=59)h+='<div class="it"><div><span class="chip c-camp">3 y 4 años</span><b>Gripe intranasal (Fluenz)</b><small>Preferentemente en el colegio.</small></div></div>'}
+ if(p.ageM>36&&p.ageY<=18)h+='<div class="warn" style="margin:10px 0">Las dosis de los primeros años dependen del calendario vigente en su año de nacimiento (por ejemplo, MenB, VNC20 o rotavirus son recientes). Revisa su historial y usa la guía de calendarios acelerados.</div>';
+ if(p.ageY>=19)h+='<div class="warn" style="margin:10px 0">Las pautas infantiles no se listan en adultos: el calendario de su cohorte era otro. Revisa el historial y el rescate que corresponda abajo.</div>';
+ if(p.past.length){h+='<h3>Esperado por edad (marca lo documentado)</h3><p style="color:var(--mu);margin:0 0 6px">Lo que queda sin marcar es lo que hay que comprobar en Diraya o en el carné y, si falta, rescatar según la guía de calendarios acelerados.</p>';
+  p.past.slice().reverse().forEach(function(x){x.items.forEach(function(it){var k=x.ms.l+"|"+it[0];h+=itemHtml(k,it[0]+" · "+x.ms.l,it[1],state[k]?"c-ok":"c-now",state[k]?"documentada":(rel(x.due,today)))})})}
+ if(p.resc.length){h+='<h3>Rescates y revisiones por edad</h3>';p.resc.forEach(function(r){h+='<div class="it"><div><span class="chip c-resc">rescate</span><b>'+esc(r[0])+'</b><small>'+esc(r[1])+'</small></div></div>'})}
+ if(p.adult.length){h+='<h3>Adulto, embarazo y riesgo</h3>';p.adult.forEach(function(r){h+='<div class="it"><div><span class="chip c-now">revisar</span><b>'+esc(r[0])+'</b><small>'+esc(r[1])+'</small></div></div>'})}
+ if(!p.past.length&&!p.next&&!p.resc.length&&!p.adult.length&&!p.camp.length)h+='<div class="empty">Sin vacunas sistemáticas específicas para esta edad en el calendario 2026. Revisa Td y las situaciones de riesgo.</div>';
+ h+='<p style="color:var(--mu);font-size:.85rem;margin-top:14px">Orientativo. No tiene en cuenta vacunas previas ni todas las condiciones de riesgo. Verifica en Diraya y en la instrucción vigente.</p>';
+ $("#out").innerHTML=h;
+ $("#out").querySelectorAll("input[data-k]").forEach(function(c){c.addEventListener("change",function(){state[c.getAttribute("data-k")]=c.checked;render()})});
+}
+$("#go").addEventListener("click",function(){state={};render()});
+$("#dob").addEventListener("change",function(){state={};render()});
+$("#fecha").addEventListener("change",render);
+["emb","riesgo","resi","sanit","cuid"].forEach(function(id){$("#"+id).addEventListener("change",function(){if(id==="emb")$("#weekbox").style.display=this.checked?"block":"none";render()})});
+$("#fecha").value=iso(new Date());
+document.querySelectorAll(".quick button").forEach(function(b){b.addEventListener("click",function(){var t=$("#fecha").value?fromIso($("#fecha").value):new Date();var d=b.dataset.m!==undefined?addM(t,-(+b.dataset.m)):addM(t,-12*(+b.dataset.y));$("#dob").value=iso(d);state={};render()})});
+/* ---------- grupos de edad ---------- */
+var AGES=[["0 m",0,"a0"],["2 m",2,"a1"],["4 m",4,"a1"],["11 m",11,"a1"],["12 m",12,"a1"],["15 m",15,"a1"],["2-3 años",24,"a2"],["6 años",72,"a2"],["12 años",144,"a2"],["14 años",168,"a2"],["13-21 años (rescate)",-1,"a2"],["60-80 años",-2,"a3"],["65 años",-3,"a3"],["≥ 65 años",-4,"a3"],["Embarazo",-5,"a4"]];
+var ADET={"-1":[["VPH (rescate)","1 dosis hasta los 21 años, ambos sexos"],["Meningococo ACWY (rescate, 13 a 18 años)","Si no recibieron ninguna dosis desde los 10 años"]],
+"-2":[["Neumococo (VNC20)","Una dosis a nacidos 1946-1966 sin VNC13, VNC15 ni VNC20"],["Gripe anual","Campaña; Efluelda desde los 75 años"]],
+"-3":[["Herpes zóster (Shingrix)","2 dosis, mínimo 2 meses. Cohorte de 1961, rescate de 1959 y 1960"],["Td","Verificar estado vacunal"]],
+"-4":[["COVID-19 anual (≥ 70)","Una dosis anual"],["Gripe anual","Campaña"],["Td","Completar hasta 5 dosis"],["VRS en residencias (≥ 60)","mRESVIA, SGSPPS-4/2026"]],
+"-5":[["Tdpa","Desde la semana 27, en cada embarazo"],["Gripe","Cualquier trimestre, durante la campaña"],["COVID-19","Cualquier trimestre"],["No poner","Triple vírica y varicela (contraindicadas)"]]};
+var ag=$("#ages");
+AGES.forEach(function(a,i){var b=document.createElement("button");b.className=a[2];b.textContent=a[0];b.addEventListener("click",function(){ag.querySelectorAll("button").forEach(function(x){x.classList.remove("on")});b.classList.add("on");var list;if(a[1]>=0){var ms=MIL.filter(function(m){return m.m===a[1]})[0];list=ms?ms.v:[]; if(a[1]===24)list=list.concat([["A los 3 años","Si no se puso a los 2: 2ª dosis de triple vírica y varicela"]])}else list=ADET[a[1]];
+ $("#agedetail").innerHTML="<h3 style='margin-top:0'>"+esc(a[0])+"</h3>"+list.map(function(v){return '<div class="it"><div><b>'+esc(v[0])+'</b><small>'+esc(v[1])+'</small></div></div>'}).join("")});ag.appendChild(b)});
+/* ---------- línea de vida ---------- */
+var TL=[["0",0,"a0"],["2 m",2,"a1"],["4 m",4,"a1"],["11 m",11,"a1"],["12 m",12,"a1"],["15 m",15,"a1"],["2 a",24,"a2"],["6 a",72,"a2"],["12 a",144,"a2"],["14 a",168,"a2"],["60+",720,"a3"],["65",780,"a3"],["70+",840,"a3"],["75+",900,"a3"],["80+",960,"a3"]];
+var TD={720:[["Gripe anual","Desde los 60 años"],["Neumococo VNC20","Nacidos 1946-1966"]],780:[["Herpes zóster","2 dosis (cohorte 1961, rescate 1959-60)"],["Td","Verificar; completar hasta 5 dosis"]],840:[["COVID-19 anual","Desde los 70 años"]],900:[["Gripe alta carga (Efluelda)","Sistemática desde los 75 años"]],960:[["Gripe y COVID","Desde el 1 de octubre en la campaña (≥ 80 años)"]]};
+var tl=$("#tl"),COL={a0:"#1c9d78",a1:"#0e6aa8",a2:"#d9342b",a3:"#9a8b0a"};
+TL.forEach(function(t){var d=document.createElement("div");d.className="tn";d.innerHTML='<div class="dot" style="background:'+COL[t[2]]+'">'+t[0]+'</div><p>'+(t[1]<720?esc(MIL.filter(function(m){return m.m===t[1]})[0].v.map(function(v){return v[0].split(" (")[0]}).slice(0,3).join(", ")):"")+'</p>';d.dataset.m=t[1];d.querySelector(".dot").addEventListener("click",function(){var list=t[1]<720?MIL.filter(function(m){return m.m===t[1]})[0].v:TD[t[1]];$("#tldetail").innerHTML="<h3 style='margin-top:0'>"+esc(t[0])+"</h3>"+list.map(function(v){return '<div class="it"><div><b>'+esc(v[0])+'</b><small>'+esc(v[1])+'</small></div></div>'}).join("")});tl.appendChild(d)});
+function marcaHito(){var v=$("#dob").value;tl.querySelectorAll(".tn").forEach(function(n){n.classList.remove("now")});if(!v)return;var m=monthsBetween(fromIso(v),new Date()),best=null,bd=1e9;TL.forEach(function(t){var x=Math.abs(t[1]-m);if(x<bd){bd=x;best=t[1]}});tl.querySelectorAll(".tn").forEach(function(n){if(+n.dataset.m===best)n.classList.add("now")})}
+$("#dob").addEventListener("change",marcaHito);document.querySelectorAll(".quick button").forEach(function(b){b.addEventListener("click",marcaHito)});$("#go").addEventListener("click",marcaHito);
+/* ---------- campaña ---------- */
+var now=new Date();
+$("#camp").innerHTML=CAMP.map(function(c){var open=c.d<=now;return '<div class="card"><span class="chip '+(open?"c-camp":"c-next")+'">'+(open?"abierta":"próxima")+'</span><h3 style="margin:6px 0">Desde el '+c.t+'</h3><div>'+esc(c.g)+'</div></div>'}).join("");
+var camp0=new Date(2026,9,1);$("#s3").textContent=Math.max(0,Math.floor((now-camp0)/864e5)+1);
+var tot=0;MIL.forEach(function(m){tot+=m.v.length});$("#s1").textContent=MIL.length;
+/* ---------- quiz ---------- */
+var Q=[
+ ["¿A qué edad se pone ahora la 2ª dosis de triple vírica y varicela en Andalucía?",["2 años","3 años","6 años","12 años"],0,"Novedad 2026: se adelanta de 3 a 2 años."],
+ ["¿Desde qué semana de embarazo se pone la Tdpa?",["Semana 12","Semana 20","Semana 27","Semana 36"],2,"Una dosis en cada embarazo, preferible en la semana 27 o 28."],
+ ["¿Hasta qué edad llega el rescate de VPH en 2026?",["14 años","18 años","21 años","26 años"],2,"Una dosis, en chicas y chicos, hasta los 21 años."],
+ ["¿Qué cohortes reciben VNC20 como neumococo en adultos en 2026?",["Nacidos 1946 a 1966","Nacidos 1960 a 1970","Mayores de 75","Solo mayores de 80"],0,"60 a 80 años, sin VNC13, VNC15 ni VNC20 previa."],
+ ["¿Cuántas dosis de Shingrix y con qué intervalo mínimo?",["1 dosis","2 dosis, mínimo 2 meses","3 dosis, mínimo 1 mes","2 dosis, mínimo 12 meses"],1,"Cohorte de 1961 con rescate de 1959 y 1960."],
+ ["¿Qué vacuna recibe el recién nacido nacido entre el 1/4/2026 y el 31/3/2027 frente al VRS?",["Nirsevimab","mRESVIA","Palivizumab","Ninguna"],0,"Una dosis única (SGSPPS-1/2026)."],
+ ["Dos vacunas atenuadas no puestas el mismo día, ¿cuánto se separan como mínimo?",["Nada","7 días","28 días","3 meses"],2,"Sin periodo de gracia en este caso."],
+ ["Una dosis inactivada puesta 5 o más días antes del intervalo mínimo...",["Es válida","No es válida y se repite","Cuenta como media dosis","Se ignora el intervalo"],1,"El periodo de gracia es de 4 días."],
+ ["¿Desde qué edad se vacuna sistemáticamente con Efluelda (alta carga) en la campaña 2026-27?",["60 años","65 años","75 años","85 años"],2,"Desde los 75 años de forma sistemática."],
+ ["¿Cuándo empezó la campaña de gripe y COVID 2026-27?",["1 de septiembre","1 de octubre","1 de noviembre","1 de diciembre"],1,"Instrucción SGSPPS-3/2026."],
+ ["¿Qué vale como prueba de dosis puesta?",["Palabra de los padres","Registro oficial o carné","Una foto","Nada, siempre se reinicia"],1,"La información verbal no se acepta como aval."],
+ ["¿Con qué vacuna oral se previene el rotavirus desde febrero de 2026?",["Rotarix","Prevenar","Nimenrix","Gardasil"],0,"Rescate de nacidos desde el 1/10/2025."]
+];
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function quiz(){var qs=shuffle(Q).slice(0,10),i=0,pts=0,box=$("#quiz");
+ function show(){if(i>=qs.length){box.innerHTML='<h3 style="margin-top:0">Resultado: '+pts+' de '+qs.length+'</h3><p>'+(pts>=8?"Muy bien.":pts>=5?"Vas bien. Repasa lo que falló.":"Repasa el calendario y vuelve a intentarlo.")+'</p><button class="btn p" type="button" id="rq">Otra ronda</button>';$("#rq").addEventListener("click",quiz);return}
+  var q=qs[i],order=shuffle(q[1].map(function(t,k){return [t,k]}));
+  box.innerHTML='<div class="bar"><i style="width:'+(i*10)+'%"></i></div><div style="color:var(--mu)">Pregunta '+(i+1)+' de '+qs.length+'</div><div class="q">'+esc(q[0])+'</div><div class="opts">'+order.map(function(o,n){return '<button type="button" data-k="'+o[1]+'">'+esc(o[0])+'</button>'}).join("")+'</div><div id="fb" style="margin-top:10px"></div>';
+  box.querySelectorAll(".opts button").forEach(function(b){b.addEventListener("click",function(){var good=+b.dataset.k===q[2];if(good)pts++;box.querySelectorAll(".opts button").forEach(function(x){x.disabled=true;if(+x.dataset.k===q[2])x.classList.add("ok")});if(!good)b.classList.add("ko");$("#fb").innerHTML='<div>'+esc(q[3])+'</div><button class="btn p" type="button" id="nx" style="margin-top:8px">'+(i+1<qs.length?"Siguiente":"Ver resultado")+'</button>';$("#nx").addEventListener("click",function(){i++;show()})})})}
+ show()}
+quiz();
+/* ---------- búsqueda ---------- */
+function buscar(){var q=$("#q").value.trim().toLowerCase(),r=$("#qres");if(q.length<2){r.innerHTML="";return}
+ var hits=[];document.querySelectorAll("main section").forEach(function(s){if(s.id==="buscar")return;var title=s.querySelector("h2").textContent;s.querySelectorAll(".card,details,li,tr,p").forEach(function(e){if(e.closest("#quiz"))return;var t=e.textContent.replace(/\s+/g," ").trim();if(t.length>12&&t.length<420&&t.toLowerCase().indexOf(q)>-1&&!hits.some(function(h){return h.t===t}))hits.push({t:t,s:s.id,n:title})})});
+ hits=hits.slice(0,25);
+ r.innerHTML=hits.length?hits.map(function(h){var i=h.t.toLowerCase().indexOf(q);return '<div class="it"><div><span class="chip c-ok">'+esc(h.n)+'</span> '+esc(h.t.slice(0,i))+'<mark>'+esc(h.t.slice(i,i+q.length))+'</mark>'+esc(h.t.slice(i+q.length))+' <a href="#'+h.s+'">ir</a></div></div>'}).join(""):'<div class="empty">Sin resultados. Prueba con otra palabra.</div>'}
+$("#qb").addEventListener("click",buscar);$("#q").addEventListener("input",buscar);
+/* ---------- tema, menú, aparición ---------- */
+if(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)document.body.classList.add("dark");
+$("#dk").addEventListener("click",function(){document.body.classList.toggle("dark")});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add("in")})},{threshold:.06});
+document.querySelectorAll(".reveal").forEach(function(e){io.observe(e)});
+var links=document.querySelectorAll("nav.menu a");
+var so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)})}})},{rootMargin:"-40% 0px -55% 0px"});
+document.querySelectorAll("main section").forEach(function(s){so.observe(s)});
+})();
+</script>
+</body>
+</html>
