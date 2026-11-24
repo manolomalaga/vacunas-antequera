@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -115,6 +115,8 @@ footer{margin-top:50px;background:var(--gd);color:#cfe8df;padding:28px 0}footer 
 @media(max-width:860px){.heroin{grid-template-columns:1fr}.heroimg{display:none}.assist{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}}
 @media print{header.hero,nav.menu,.tools,.cta,footer .fl,.quiz,.srch{display:none}.reveal{opacity:1;transform:none}body{background:#fff;color:#000}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:560px){.brand{flex-wrap:wrap}.logo img{max-height:44px}.tools{margin-left:auto;gap:6px}.tools button{padding:6px 11px;font-size:.82rem;white-space:nowrap}}
+body.dark .card,body.dark .tool,body.dark details{background:var(--card)}
 </style>
 </head>
 <body>
@@ -321,7 +323,8 @@ var MIL=[
  {m:0,l:"Nacimiento",g:"a0",v:[["Nirsevimab (Beyfortus)","Una dosis si nace entre el 1/4/2026 y el 31/3/2027. Ver apartado VRS."]]},
  {m:2,l:"2 meses",g:"a1",v:[["Hexavalente","1ª dosis"],["Neumococo conjugada (VNC20)","1ª dosis"],["Meningococo B","1ª dosis"],["Rotavirus (Rotarix, oral)","1ª dosis. Solo nacidos desde el 1/10/2025."]]},
  {m:4,l:"4 meses",g:"a1",v:[["Hexavalente","2ª dosis"],["Neumococo conjugada (VNC20)","2ª dosis"],["Meningococo B","2ª dosis"],["Meningococo ACWY (Nimenrix)","1 dosis"],["Rotavirus (Rotarix, oral)","2ª dosis. Solo nacidos desde el 1/10/2025."]]},
- {m:11,l:"11 meses",g:"a1",v:[["Hexavalente","Refuerzo"],["Neumococo conjugada (VNC20)","Refuerzo (pauta 2+1)"]]},
+ {m:6,l:"6 meses",g:"a1",v:[["Neumococo conjugada (VNC20)","3ª dosis (pauta 3+1: 2, 4, 6 y 11 meses). Instrucción DGSPyOF-1/2026, apartado 3.3 y tabla 2."]]},
+ {m:11,l:"11 meses",g:"a1",v:[["Hexavalente","Refuerzo"],["Neumococo conjugada (VNC20)","4ª dosis, refuerzo (pauta 3+1: 2, 4, 6 y 11 meses)"]]},
  {m:12,l:"12 meses",g:"a1",v:[["Meningococo ACWY (MenQuadfi)","1 dosis"],["Triple vírica","1ª dosis"]]},
  {m:15,l:"15 meses",g:"a1",v:[["Meningococo B","Refuerzo"],["Varicela","1ª dosis"]]},
  {m:24,l:"2 años",g:"a2",v:[["Triple vírica","2ª dosis. Novedad 2026: se adelanta de 3 a 2 años."],["Varicela","2ª dosis. Novedad 2026: se adelanta de 3 a 2 años."]]},
@@ -431,7 +434,7 @@ $("#fecha").addEventListener("change",render);
 $("#fecha").value=iso(new Date());
 document.querySelectorAll(".quick button").forEach(function(b){b.addEventListener("click",function(){var t=$("#fecha").value?fromIso($("#fecha").value):new Date();var d=b.dataset.m!==undefined?addM(t,-(+b.dataset.m)):addM(t,-12*(+b.dataset.y));$("#dob").value=iso(d);state={};render()})});
 /* ---------- grupos de edad ---------- */
-var AGES=[["0 m",0,"a0"],["2 m",2,"a1"],["4 m",4,"a1"],["11 m",11,"a1"],["12 m",12,"a1"],["15 m",15,"a1"],["2-3 años",24,"a2"],["6 años",72,"a2"],["12 años",144,"a2"],["14 años",168,"a2"],["13-21 años (rescate)",-1,"a2"],["60-80 años",-2,"a3"],["65 años",-3,"a3"],["≥ 65 años",-4,"a3"],["Embarazo",-5,"a4"]];
+var AGES=[["0 m",0,"a0"],["2 m",2,"a1"],["4 m",4,"a1"],["6 m",6,"a1"],["11 m",11,"a1"],["12 m",12,"a1"],["15 m",15,"a1"],["2-3 años",24,"a2"],["6 años",72,"a2"],["12 años",144,"a2"],["14 años",168,"a2"],["13-21 años (rescate)",-1,"a2"],["60-80 años",-2,"a3"],["65 años",-3,"a3"],["≥ 65 años",-4,"a3"],["Embarazo",-5,"a4"]];
 var ADET={"-1":[["VPH (rescate)","1 dosis hasta los 21 años, ambos sexos"],["Meningococo ACWY (rescate, 13 a 18 años)","Si no recibieron ninguna dosis desde los 10 años"]],
 "-2":[["Neumococo (VNC20)","Una dosis a nacidos 1946-1966 sin VNC13, VNC15 ni VNC20"],["Gripe anual","Campaña; Efluelda desde los 75 años"]],
 "-3":[["Herpes zóster (Shingrix)","2 dosis, mínimo 2 meses. Cohorte de 1961, rescate de 1959 y 1960"],["Td","Verificar estado vacunal"]],
@@ -441,7 +444,7 @@ var ag=$("#ages");
 AGES.forEach(function(a,i){var b=document.createElement("button");b.className=a[2];b.textContent=a[0];b.addEventListener("click",function(){ag.querySelectorAll("button").forEach(function(x){x.classList.remove("on")});b.classList.add("on");var list;if(a[1]>=0){var ms=MIL.filter(function(m){return m.m===a[1]})[0];list=ms?ms.v:[]; if(a[1]===24)list=list.concat([["A los 3 años","Si no se puso a los 2: 2ª dosis de triple vírica y varicela"]])}else list=ADET[a[1]];
  $("#agedetail").innerHTML="<h3 style='margin-top:0'>"+esc(a[0])+"</h3>"+list.map(function(v){return '<div class="it"><div><b>'+esc(v[0])+'</b><small>'+esc(v[1])+'</small></div></div>'}).join("")});ag.appendChild(b)});
 /* ---------- línea de vida ---------- */
-var TL=[["0",0,"a0"],["2 m",2,"a1"],["4 m",4,"a1"],["11 m",11,"a1"],["12 m",12,"a1"],["15 m",15,"a1"],["2 a",24,"a2"],["6 a",72,"a2"],["12 a",144,"a2"],["14 a",168,"a2"],["60+",720,"a3"],["65",780,"a3"],["70+",840,"a3"],["75+",900,"a3"],["80+",960,"a3"]];
+var TL=[["0",0,"a0"],["2 m",2,"a1"],["4 m",4,"a1"],["6 m",6,"a1"],["11 m",11,"a1"],["12 m",12,"a1"],["15 m",15,"a1"],["2 a",24,"a2"],["6 a",72,"a2"],["12 a",144,"a2"],["14 a",168,"a2"],["60+",720,"a3"],["65",780,"a3"],["70+",840,"a3"],["75+",900,"a3"],["80+",960,"a3"]];
 var TD={720:[["Gripe anual","Desde los 60 años"],["Neumococo VNC20","Nacidos 1946-1966"]],780:[["Herpes zóster","2 dosis (cohorte 1961, rescate 1959-60)"],["Td","Verificar; completar hasta 5 dosis"]],840:[["COVID-19 anual","Desde los 70 años"]],900:[["Gripe alta carga (Efluelda)","Sistemática desde los 75 años"]],960:[["Gripe y COVID","Desde el 1 de octubre en la campaña (≥ 80 años)"]]};
 var tl=$("#tl"),COL={a0:"#1c9d78",a1:"#0e6aa8",a2:"#d9342b",a3:"#9a8b0a"};
 TL.forEach(function(t){var d=document.createElement("div");d.className="tn";d.innerHTML='<div class="dot" style="background:'+COL[t[2]]+'">'+t[0]+'</div><p>'+(t[1]<720?esc(MIL.filter(function(m){return m.m===t[1]})[0].v.map(function(v){return v[0].split(" (")[0]}).slice(0,3).join(", ")):"")+'</p>';d.dataset.m=t[1];d.querySelector(".dot").addEventListener("click",function(){var list=t[1]<720?MIL.filter(function(m){return m.m===t[1]})[0].v:TD[t[1]];$("#tldetail").innerHTML="<h3 style='margin-top:0'>"+esc(t[0])+"</h3>"+list.map(function(v){return '<div class="it"><div><b>'+esc(v[0])+'</b><small>'+esc(v[1])+'</small></div></div>'}).join("")});tl.appendChild(d)});
@@ -493,7 +496,5 @@ document.querySelectorAll("main section").forEach(function(s){so.observe(s)});
 </script>
 </body>
 </html>
-
-<style>@media(max-width:560px){.brand{flex-wrap:wrap}.logo img{max-height:44px}.tools{margin-left:auto;gap:6px}.tools button{padding:6px 11px;font-size:.82rem;white-space:nowrap}}body.dark .card,body.dark .tool,body.dark details{background:var(--card)}</style>
 
 <script>(function(){var s=document.getElementById("riesgo");if(!s||document.getElementById("cisns"))return;var d=document.createElement("details");d.id="cisns";d.innerHTML='<summary>Tablas de vacunación en grupos de riesgo (Ministerio de Sanidad)</summary><div>Tablas del Consejo Interterritorial por patología o condición: recomendación específica, general, no recomendada o contraindicada. <a target="_blank" rel="noopener" href="https://www.sanidad.gob.es/areas/promocionPrevencion/vacunaciones/calendario/docs/CalendarioVacunacion_GRadultos.pdf">Adultos (más de 18 años)</a> · <a target="_blank" rel="noopener" href="https://www.sanidad.gob.es/areas/promocionPrevencion/vacunaciones/calendario/docs/CalendarioVacunacion_GRinfantil.pdf">Infancia y adolescencia (menos de 18 años)</a> · <a target="_blank" rel="noopener" href="https://www.andavac.es/vacunacion-en-grupos-de-riesgo/">Andavac, grupos de riesgo</a>. Para Andalucía manda la instrucción DGSPyOF-1/2026; estas tablas sirven de apoyo y comparación.</div>';var p=s.querySelector("details");p.parentNode.insertBefore(d,p);var f=document.querySelector("#fuentes .srcs");if(f){var a=document.createElement("a");a.target="_blank";a.rel="noopener";a.href="https://semergen.es/formacion/appvacunas/index.php";a.textContent="SEMERGEN, APP Vacunas (consulta por comunidad y edad)";f.appendChild(a)}})();</script>
