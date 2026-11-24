@@ -117,6 +117,7 @@ footer{margin-top:50px;background:var(--gd);color:#cfe8df;padding:28px 0}footer 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media(max-width:560px){.brand{flex-wrap:wrap}.logo img{max-height:44px}.tools{margin-left:auto;gap:6px}.tools button{padding:6px 11px;font-size:.82rem;white-space:nowrap}}
 body.dark .card,body.dark .tool,body.dark details{background:var(--card)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:14px}.pcard{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;display:flex;flex-direction:column}.pcard img{width:100%;display:block;cursor:zoom-in;background:#eee}.pcard .pb{padding:12px 14px;display:flex;flex-direction:column;gap:8px}.pcard b{color:var(--gd)}body.dark .pcard b{color:#7fe6c4}.pcard a.btn{text-align:center;text-decoration:none}#pzoom{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:99;overflow:auto}#pzoom img{max-width:96vw;max-height:96vh}
 </style>
 </head>
 <body>
@@ -145,7 +146,7 @@ body.dark .card,body.dark .tool,body.dark details{background:var(--card)}
 </header>
 
 <nav class="menu"><div class="wrap">
- <a href="#asistente">Asistente por edad</a><a href="#edades">Grupos de edad</a><a href="#linea">Línea de vida</a><a href="#campana">Gripe y COVID</a><a href="#vrs">VRS</a><a href="#rescate">Rescate de dosis</a><a href="#riesgo">Riesgo</a><a href="#novedades">Novedades 2026</a><a href="#antequera">Antequera</a><a href="#herramientas">Herramientas</a><a href="#repaso">Repaso</a><a href="#buscar">Buscar</a><a href="#fuentes">Fuentes</a>
+ <a href="#asistente">Asistente por edad</a><a href="#edades">Grupos de edad</a><a href="#linea">Línea de vida</a><a href="#campana">Gripe y COVID</a><a href="#vrs">VRS</a><a href="#rescate">Rescate de dosis</a><a href="#riesgo">Riesgo</a><a href="#novedades">Novedades 2026</a><a href="#antequera">Antequera</a><a href="#herramientas">Herramientas</a><a href="#repaso">Repaso</a><a href="#buscar">Buscar</a><a href="#posters">Pósters</a><a href="#fuentes">Fuentes</a>
 </div></nav>
 
 <main class="wrap">
@@ -289,6 +290,14 @@ body.dark .card,body.dark .tool,body.dark details{background:var(--card)}
  <div class="srch"><input id="q" type="search" placeholder="Ej.: zóster, MenB, rotavirus, 2 años, embarazo"><button class="btn p" id="qb" type="button">Buscar</button></div>
  <div id="qres" style="margin-top:12px"></div>
 </section>
+
+<section id="posters" class="reveal">
+ <h2>Pósters</h2>
+ <p class="lead">Pósters resumen para imprimir o compartir. Haz clic en la vista previa para verla grande y descarga el PDF en tamaño A3. Material de estudio no oficial; fuente: Andavac y SAS. Consulta con tu centro de salud.</p>
+ <div class="pgrid" id="pgrid"></div>
+</section>
+<div id="pzoom" onclick="this.style.display='none'"><img alt="Póster ampliado"></div>
+<script>(function(){var P=[{"titulo": "Calendario de vacunación 0-14 años", "imagen": "1-p-c014.jpg", "pdf": "2-p-c014.pdf"}, {"titulo": "Calendario vacunal de adultos", "imagen": "55-p-adu.jpg", "pdf": "48-p-adu.pdf"}, {"titulo": "Gripe y COVID-19: cronograma de inicio escalonado", "imagen": "7-p-cron.jpg", "pdf": "21-p-cron.pdf"}, {"titulo": "Súper Sábado 12 de diciembre (sin cita)", "imagen": "22-p-sab.jpg", "pdf": "10-p-sab.pdf"}, {"titulo": "VRS en adultos con mayor riesgo 2026-27", "imagen": "4-p-vrs.jpg", "pdf": "5-p-vrs.pdf"}, {"titulo": "mRESVIA: conservación, preparación y administración (profesionales)", "imagen": "23-p-mres.jpg", "pdf": "36-p-mres.pdf"}, {"titulo": "Vacunas en el embarazo y el puerperio", "imagen": "59-p-emb.jpg", "pdf": "42-p-emb.pdf"}, {"titulo": "Herpes zóster (Shingrix)", "imagen": "39-p-zos.jpg", "pdf": "40-p-zos.pdf"}, {"titulo": "Papilomavirus (VPH)", "imagen": "49-p-vph.jpg", "pdf": "56-p-vph.pdf"}],g=document.getElementById('pgrid'),z=document.getElementById('pzoom');P.forEach(function(p){var d=document.createElement('div');d.className='pcard';var i=document.createElement('img');i.src=p.imagen;i.alt='Póster: '+p.titulo;i.loading='lazy';i.onclick=function(){z.querySelector('img').src=p.imagen;z.style.display='flex'};var b=document.createElement('div');b.className='pb';b.innerHTML='<b></b><a class="btn p" download target="_blank" rel="noopener">Descargar PDF (A3)</a>';b.firstChild.textContent=p.titulo;b.lastChild.href=p.pdf;d.appendChild(i);d.appendChild(b);g.appendChild(d)})})();</script>
 
 <section id="fuentes" class="reveal">
  <h2>Fuentes</h2>
